@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace ApiZakladokNet.Entity
 {
-    [Table("Product")]
-    public class Product
+    [Table("User")]
+    public class User
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }      
+        public string Login { get; set; }
         [Required]
-        public decimal Price { get; set; }
-        public string Description { get; set; }
-        [Required]
-        public float Quantity { get; set; }
+        public string Password { get; set; }
+
+
     }
 }
