@@ -12,5 +12,8 @@ namespace ApiZakladokNet.Entity
         {
 
         }
+        DbSet<Product> Dbproduct { get; set; }
+        DbSet<User> Dbuser { get; set; }
+        DbSet<Order> Dborder { get; set; }
     }
 }
