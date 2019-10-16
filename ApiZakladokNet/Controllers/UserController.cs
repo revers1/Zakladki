@@ -31,7 +31,7 @@ namespace ApiZakladokNet.Controllers
         public ContentResult AddUser([FromBody]UserViewModel model)
         {
             try
-            { 
+            {
                 User users = new User()
                 {
                     Login = model.Login,
@@ -39,12 +39,24 @@ namespace ApiZakladokNet.Controllers
                 };
                 context.Dbuser.Add(users);
                 context.SaveChanges();
-                return Content("Order successfuly added");
+                return Content("User Added");
             }
             catch (Exception ex)
             {
                 return Content("Error " + ex.Message);
             }
+        }
+        [HttpDelete("deleteUser/{id}")]
+        public ContentResult deletecategory(int id, [FromBody]UserViewModel model)
+        {
+            var user = context.Dbuser.FirstOrDefault(t => t.Id == id);
+            if (user != null)
+            {
+                context.Remove(user);
+                context.SaveChanges();
+                return Content("deleted user");
+            }
+            else return Content("didnt delete user");
         }
     }
 }
