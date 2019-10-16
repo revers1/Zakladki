@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiZakladokNet.Entity;
+using ApiZakladokNet.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -19,15 +20,15 @@ namespace ApiZakladokNet.Controllers
         { context = ccontext; }
 
        
-        [HttpGet("user")]
+        [HttpGet("getUser")]
         public ContentResult GetUsers()
         {
             List<User> userr = context.Dbuser.ToList();
             string json = JsonConvert.SerializeObject(userr);
             return Content(json, "application/json");
         }
-        [HttpPost("add")]
-        public ContentResult AddUser([FromBody]AddUser model)
+        [HttpPost("addUser")]
+        public ContentResult AddUser([FromBody]UserViewModel model)
         {
             try
             {
@@ -40,11 +41,11 @@ namespace ApiZakladokNet.Controllers
                 };
                 context.Dbuser.Add(users);
                 context.SaveChanges();
-                return Content("Added good");
+                return Content("Order successfuly added");
             }
             catch (Exception ex)
             {
-                return Content("Pomilka " + ex.Message);
+                return Content("Error " + ex.Message);
             }
         }
     }
