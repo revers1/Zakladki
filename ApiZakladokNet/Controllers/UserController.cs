@@ -9,7 +9,7 @@ namespace ApiZakladokNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class UserController : ControllerBase
     {
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
