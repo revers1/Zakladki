@@ -17,13 +17,13 @@ namespace ApiZakladokNet.Entity
         [Required]
         public string CoordY { get; set; }
         [Required]
-        [ForeignKey("Products")]
+        [ForeignKey("ProductOrder")]
         public int Product_Id { get; set; }
         [Required]
-        [ForeignKey("Users")]
+        [ForeignKey("UserOrder")]
         public int User_Id { get; set; }
-        public virtual User Users { get; set; }
-        public virtual Product Products { get; set; }
+        public virtual User UserOrder { get; set; }
+        public virtual Product ProductOrder { get; set; }
 
     }
 }
