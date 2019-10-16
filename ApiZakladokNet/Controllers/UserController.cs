@@ -31,9 +31,7 @@ namespace ApiZakladokNet.Controllers
         public ContentResult AddUser([FromBody]UserViewModel model)
         {
             try
-            {
-
-
+            { 
                 User users = new User()
                 {
                     Login = model.Login,
