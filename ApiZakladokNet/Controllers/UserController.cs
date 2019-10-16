@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ApiZakladokNet.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ApiZakladokNet.Controllers
 {
@@ -13,10 +14,17 @@ namespace ApiZakladokNet.Controllers
     public class UserController : ControllerBase
     {
         private readonly EFContext context;
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+
+        public UserController(EFContext ccontext)
+        { context = ccontext; }
+
+       
+        [HttpGet("user")]
+        public ContentResult GetUsers()
         {
-            return "value";
+            List<User> userr = context.Dbuser.ToList();
+            string json = JsonConvert.SerializeObject(userr);
+            return Content(json, "application/json");
         }
     }
 }
