@@ -13,6 +13,10 @@ namespace ApiZakladokNet.Entity
         [Key]
         public int Id { get; set; }
         [Required]
+        public string  CoordX { get; set; }
+        [Required]
+        public string CoordY { get; set; }
+        [Required]
         [ForeignKey("Products")]
         public int Product_Id { get; set; }
         [Required]

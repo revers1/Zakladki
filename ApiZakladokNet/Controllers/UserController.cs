@@ -26,5 +26,26 @@ namespace ApiZakladokNet.Controllers
             string json = JsonConvert.SerializeObject(userr);
             return Content(json, "application/json");
         }
+        [HttpPost("add")]
+        public ContentResult AddUser([FromBody]AddUser model)
+        {
+            try
+            {
+
+
+                User users = new User()
+                {
+                    Login = model.Login,
+                    Password = model.Password
+                };
+                context.Dbuser.Add(users);
+                context.SaveChanges();
+                return Content("Added good");
+            }
+            catch (Exception ex)
+            {
+                return Content("Pomilka " + ex.Message);
+            }
+        }
     }
 }
