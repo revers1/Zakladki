@@ -19,5 +19,6 @@ namespace ApiZakladokNet.Entity
         public string Description { get; set; }
         [Required]
         public float Quantity { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
