@@ -17,7 +17,8 @@ namespace ApiZakladokNet.Controllers
         private readonly EFContext context;
 
         public UserController(EFContext ccontext)
-        { context = ccontext; }
+        { context = ccontext;
+        }
 
        
         [HttpGet("getUser")]
