@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladkiAdoNet"
         mc:Ignorable="d"
-        Title="LogIn" Height="450" Width="800">
+        Title="LogIn" Height="450" Width="800"
+        MaxHeight="450" MaxWidth="800"
+        Background="#FF222222">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,52 +23,59 @@
         
         <!--Labels-->
         <Label Grid.Row="0" Grid.ColumnSpan="2"
-               Background="Orange" Foreground="#FF222222" HorizontalContentAlignment="Center"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               BorderBrush="Orange" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"
                VerticalAlignment="Center" Content="Tovara.Net"
                />
 
         <Label Grid.Row="1" Grid.Column="0"
-               Background="Cyan" Foreground="#FF222222" HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               BorderBrush="Cyan" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"
-               VerticalAlignment="Center" Content="LogIn"
+               VerticalAlignment="Center" Content="Username"
                />
 
         <Label Grid.Row="2" Grid.Column="0"
-               Background="Orange" Foreground="#FF222222" HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               BorderBrush="Orange" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"
                VerticalAlignment="Center" Content="Password"
                />
 
         <!--TextBoxes-->
-        <TextBox x:Name="txtLogIn"
-                 Grid.Row="1" Grid.Column="1" Margin="5 63"
-                 Background="White" Foreground="Black"
+        <TextBox x:Name="txtUsername"
+                 Grid.Row="1" Grid.Column="1" Margin="5 57"
+                 Background="#FF222222" Foreground="White"
+                 BorderThickness="5" BorderBrush="Orange"
                  FontFamily="Century Gothic" FontSize="20"
-                 GotFocus="GotFocusLogIn" Text="Enter your logIn:"
+                 GotFocus="GotFocusUserName" Text="Enter your username:"
+                 VerticalContentAlignment="Center"
                  />
 
         <TextBox x:Name="txtPassword"
-                 Grid.Row="2" Grid.Column="1" Margin="5 63"
-                 Background="White" Foreground="Black"
+                 Grid.Row="2" Grid.Column="1" Margin="5 57"
+                 Background="#FF222222" Foreground="White"
+                 BorderThickness="5" BorderBrush="Cyan"
                  FontFamily="Century Gothic" FontSize="20"
                  GotFocus="GotFocusPassword" Text="Enter your password:"
+                 VerticalContentAlignment="Center"
                  />
 
         <!--Buttons-->
         <Button x:Name="btnLogIn" Click="LogInProgramm"
                 Grid.Row="3" Grid.Column="1" Margin="5"
-                Background="Cyan" Foreground="#FF222222"
-                FontFamily="Century Gothic" FontSize="20"
+                Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+                BorderBrush="Orange" BorderThickness="5"
+                FontFamily="Century Gothic" FontSize="17"
                 Content="LogIn"
                 />
 
         <Button x:Name="btnRegister" Click="RegisterProgramm"
                 Grid.Row="3" Grid.Column="0" Margin="5"
-                Background="Cyan" Foreground="#FF222222"
-                FontFamily="Century Gothic" FontSize="20"
+                Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+                BorderBrush="Cyan" BorderThickness="5"
+                FontFamily="Century Gothic" FontSize="17"
                 Content="Registration"
                 />
     </Grid>

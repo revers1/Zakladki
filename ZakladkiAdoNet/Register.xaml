@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ZakladkiAdoNet"
         mc:Ignorable="d"
         Title="Register" Height="300" Width="500"
-        MaxHeight="300" MaxWidth="500">
+        MaxHeight="300" MaxWidth="500"
+        Background="#FF222222">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
@@ -22,30 +23,36 @@
         
         <!--Labels-->
         <Label Grid.Row="0" Grid.Column="1"
-               Background="Cyan" Foreground="#FF222222" HorizontalContentAlignment="Center"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
+               BorderBrush="Cyan" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"
-               VerticalAlignment="Center" Content="LogIn"
+               VerticalAlignment="Center" Content="Username"
                />
 
         <Label Grid.Row="1" Grid.Column="1"
-               Background="Aqua" Foreground="#FF222222" HorizontalContentAlignment="Center"
+               Background="Orange" Foreground="#FF222222" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
+               BorderBrush="Orange" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"
                VerticalAlignment="Center" Content="Password"
                />
 
         <!--TextBoxes-->
-        <TextBox x:Name="txtLogIn"
-                 Grid.Row="0" Grid.Column="2" Margin="5 41"
-                 Background="White" Foreground="Black"
+        <TextBox x:Name="txtUsername"
+                 Grid.Row="0" Grid.Column="2" Margin="5 34"
+                 Background="#FF222222" Foreground="White"
+                 VerticalContentAlignment="Center"
+                 BorderThickness="5" BorderBrush="Orange"
                  FontFamily="Century Gothic" FontSize="20"
-                 GotFocus="GotFocusLogIn" Text="Enter your logIn:"
+                 GotFocus="GotFocusLogIn" Text="Enter your username:"
                  />
 
         <TextBox x:Name="txtPassword"
-                 Grid.Row="1" Grid.Column="2" Margin="5 41"
-                 Background="White" Foreground="Black"
+                 Grid.Row="1" Grid.Column="2" Margin="5 35"
+                 Background="#FF222222" Foreground="White"
+                 VerticalContentAlignment="Center"
+                 BorderThickness="5" BorderBrush="Cyan"
                  FontFamily="Century Gothic" FontSize="20"
                  GotFocus="GotFocusPassword" Text="Enter your password:"
                  />
@@ -62,7 +69,8 @@
 
                 <Button x:Name="Back" Click="PreviewPage"
                 Grid.Row="0" Margin="6 8"
-                Background="Cyan" Foreground="#FF222222"
+                Background="#FF222222" Foreground="White"
+                BorderBrush="Orange" BorderThickness="3"
                 VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                 FontFamily="Century Gothic" FontSize="13"
                 Content="←"/>
@@ -70,9 +78,10 @@
         </Grid>
 
         <Button x:Name="btnReg" Click="RegistrationAccount"
-                Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 5"
-                Background="Cyan" Foreground="#FF222222"
-                FontFamily="Century Gothic" FontSize="18"
+                Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 5 10 2"
+                Background="#FF222222" Foreground="White"
+                BorderBrush="Cyan" BorderThickness="3"
+                FontFamily="Century Gothic" FontSize="16"
                 Content="Registration"/>
     </Grid>
 </Window>
