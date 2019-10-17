@@ -36,7 +36,7 @@ namespace ApiZakladokNet.Controllers
                 {
                     Login = model.Login,
                     Password = model.Password,
-                    Role = false
+                    Roles_Id=model.Roles_Id
                 };
                 context.Dbuser.Add(users);
                 context.SaveChanges();
