@@ -16,6 +16,7 @@ namespace ApiZakladokNet.Entity
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
+        public bool Role { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
     }
