@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ApiZakladokNet.Entity
 {
@@ -19,6 +20,9 @@ namespace ApiZakladokNet.Entity
         public string Description { get; set; }
         [Required]
         public float Quantity { get; set; }
+
+        public string Imagge { get; set; }
+
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

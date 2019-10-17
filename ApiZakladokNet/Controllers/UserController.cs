@@ -17,7 +17,8 @@ namespace ApiZakladokNet.Controllers
         private readonly EFContext context;
 
         public UserController(EFContext ccontext)
-        { context = ccontext; }
+        { context = ccontext;
+        }
 
        
         [HttpGet("getUser")]
@@ -35,7 +36,8 @@ namespace ApiZakladokNet.Controllers
                 User users = new User()
                 {
                     Login = model.Login,
-                    Password = model.Password
+                    Password = model.Password,
+                    Roles_Id=model.Roles_Id
                 };
                 context.Dbuser.Add(users);
                 context.SaveChanges();

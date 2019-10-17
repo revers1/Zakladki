@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZakladkiAdoNet.Models;
 
 namespace ZakladkiAdoNet
 {
@@ -64,9 +68,28 @@ namespace ZakladkiAdoNet
 
         private void RegistrationAccount(object sender, RoutedEventArgs e)
         {
-            CheckARegistrationInfo();
+            try
+            {
+                HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                StreamWriter stream = new StreamWriter(request.GetRequestStream());
+                string json = JsonConvert.SerializeObject(new UserModel()
+                {
+                    Login = txtLogIn.Text,
+                    Password = txtPassword.Text,
+                    Role = false
+                });
+                stream.Write(json);
+                WebResponse response = request.GetResponse();
+                MessageBox.Show(response.ToString());
+                stream.Close();
 
-
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
