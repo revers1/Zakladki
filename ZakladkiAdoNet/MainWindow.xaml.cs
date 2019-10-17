@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ZakladkiAdoNet
@@ -18,44 +17,39 @@ namespace ZakladkiAdoNet
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class MainWindow : Window
     {
-        public LogIn()
+        public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void GotFocusUserName(object sender, RoutedEventArgs e)
+        private void NameOfProduct(object sender, RoutedEventArgs e)
         {
-            txtUsername.Text = "";
+            txtName.Text = "";
         }
 
-        private void GotFocusPassword(object sender, RoutedEventArgs e)
+        private void PriceOfProduct(object sender, RoutedEventArgs e)
         {
-            txtPassword.Text = "";
+            txtPrice.Text = "";
         }
 
-        private void LogInProgramm(object sender, RoutedEventArgs e)
+        private void CommentToProduct(object sender, RoutedEventArgs e)
         {
-            CheckALogInInfo();
-
-            //Some code
+            txtComment.Text = "";
         }
 
-        private void RegisterProgramm(object sender, RoutedEventArgs e)
+        public void CheckAOrderInfo()
         {
-            Register register = new Register();
-            register.Show();
-            this.Close();
-        }
-
-        public void CheckALogInInfo()
-        {
-            if(txtUsername.Text == "Enter your username:" || txtPassword.Text == "Enter your password:")
+            if (txtName.Text == "Name:" ||
+                txtPrice.Text == "Price:" ||
+                txtComment.Text == "Comment: ")
             {
-                MessageBox.Show("Please check your username or password!");
+                MessageBox.Show("Please write name, price and comment to product!");
             }
-            else if (txtPassword.Text == "" || txtUsername.Text == "")
+            else if (txtName.Text == "" ||
+                txtPrice.Text == "" ||
+                txtComment.Text == "")
             {
                 MessageBox.Show("Please fill in the empty fields!");
             }

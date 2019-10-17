@@ -25,7 +25,7 @@ namespace ZakladkiAdoNet
         }
         private void GotFocusLogIn(object sender, RoutedEventArgs e)
         {
-            txtLogIn.Text = "";
+            txtUsername.Text = "";
         }
 
         private void GotFocusPassword(object sender, RoutedEventArgs e)
@@ -40,9 +40,32 @@ namespace ZakladkiAdoNet
             logIn.Show();
             this.Close();
         }
+        public void CheckARegistrationInfo()
+        {
+            if (txtUsername.Text == "Enter your username:" || txtPassword.Text == "Enter your password:")
+            {
+                MessageBox.Show("Please write your username and password that you will use!");
+            }
+            else if (txtPassword.Text == "" || txtUsername.Text == "")
+            {
+                MessageBox.Show("Please fill in the empty fields!");
+            }
+            //else if()
+            //{
+            //
+            //} 
+            else
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+        }
 
         private void RegistrationAccount(object sender, RoutedEventArgs e)
         {
+            CheckARegistrationInfo();
+
 
         }
     }
