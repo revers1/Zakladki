@@ -77,7 +77,7 @@ namespace ZakladkiAdoNet
                 {
                     string json = JsonConvert.SerializeObject(new UserModel()
                     {
-                        Login = txtLogIn.Text,
+                        Login = txtUsername.Text,
                         Password = txtPassword.Text
                     });
                     stream.Write(json);
