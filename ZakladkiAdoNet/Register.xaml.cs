@@ -49,20 +49,20 @@ namespace ZakladkiAdoNet
         {
             try
             {
-                HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
+                HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49489/api/user/addUser");
                 request.Method = "POST";
                 request.ContentType = "application/json";
-                StreamWriter stream = new StreamWriter(request.GetRequestStream());
-                string json = JsonConvert.SerializeObject(new UserModel()
+                using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
                 {
-                    Login = txtLogIn.Text,
-                    Password = txtPassword.Text,
-                    Role = false
-                });
-                stream.Write(json);
+                    string json = JsonConvert.SerializeObject(new UserModel()
+                    {
+                        Login = txtLogIn.Text,
+                        Password = txtPassword.Text
+                    });
+                    stream.Write(json);
+                }
                 WebResponse response = request.GetResponse();
-                MessageBox.Show(response.ToString());
-                stream.Close();
+               // MessageBox.Show(response.ToString());
 
             }
             catch(Exception ex)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ApiZakladokNet.Migrations
 {
-    public partial class ZalkladkaMigration : Migration
+    public partial class cyka1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,11 +16,25 @@ namespace ApiZakladokNet.Migrations
                     Name = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Quantity = table.Column<float>(nullable: false)
+                    Quantity = table.Column<float>(nullable: false),
+                    Imagge = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Role",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Role", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,11 +44,18 @@ namespace ApiZakladokNet.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Login = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false)
+                    Password = table.Column<string>(nullable: false),
+                    Roles_Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Role_Roles_Id",
+                        column: x => x.Roles_Id,
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,6 +64,8 @@ namespace ApiZakladokNet.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CoordX = table.Column<string>(nullable: false),
+                    CoordY = table.Column<string>(nullable: false),
                     Product_Id = table.Column<int>(nullable: false),
                     User_Id = table.Column<int>(nullable: false)
                 },
@@ -72,6 +95,11 @@ namespace ApiZakladokNet.Migrations
                 name: "IX_Order_User_Id",
                 table: "Order",
                 column: "User_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Roles_Id",
+                table: "User",
+                column: "Roles_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -84,6 +112,9 @@ namespace ApiZakladokNet.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Role");
         }
     }
 }

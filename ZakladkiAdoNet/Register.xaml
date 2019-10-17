@@ -29,7 +29,7 @@
                />
 
         <Label Grid.Row="1" Grid.Column="1"
-               Background="Orange" Foreground="#FF222222" HorizontalContentAlignment="Center"
+               Background="Aqua" Foreground="#FF222222" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
                FontFamily="Century Gothic" FontSize="20"
                VerticalAlignment="Center" Content="Password"

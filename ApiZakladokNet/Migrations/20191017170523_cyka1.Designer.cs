@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiZakladokNet.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20191016160143_ZalkladkaMigration")]
-    partial class ZalkladkaMigration
+    [Migration("20191017170523_cyka1")]
+    partial class cyka1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,12 @@ namespace ApiZakladokNet.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CoordX")
+                        .IsRequired();
+
+                    b.Property<string>("CoordY")
+                        .IsRequired();
 
                     b.Property<int>("Product_Id");
 
@@ -47,6 +53,8 @@ namespace ApiZakladokNet.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Imagge");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -57,6 +65,20 @@ namespace ApiZakladokNet.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("ApiZakladokNet.Entity.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
                 });
 
             modelBuilder.Entity("ApiZakladokNet.Entity.User", b =>
@@ -71,21 +93,33 @@ namespace ApiZakladokNet.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
+                    b.Property<int>("Roles_Id");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Roles_Id");
 
                     b.ToTable("User");
                 });
 
             modelBuilder.Entity("ApiZakladokNet.Entity.Order", b =>
                 {
-                    b.HasOne("ApiZakladokNet.Entity.Product", "Products")
+                    b.HasOne("ApiZakladokNet.Entity.Product", "ProductOrder")
                         .WithMany("Orders")
                         .HasForeignKey("Product_Id")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ApiZakladokNet.Entity.User", "Users")
+                    b.HasOne("ApiZakladokNet.Entity.User", "UserOrder")
                         .WithMany("Orders")
                         .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ApiZakladokNet.Entity.User", b =>
+                {
+                    b.HasOne("ApiZakladokNet.Entity.Role", "RoleOf")
+                        .WithMany("Users")
+                        .HasForeignKey("Roles_Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
