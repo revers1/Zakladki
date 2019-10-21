@@ -20,7 +20,7 @@ namespace ApiZakladokNet.Entity
         public int Roles_Id { get; set; }
 
         public virtual Role RoleOf { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        //public virtual ICollection<Order> Orders { get; set; }
 
 
     }
