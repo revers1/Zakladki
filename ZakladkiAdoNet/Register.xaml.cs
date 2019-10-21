@@ -37,58 +37,47 @@ namespace ZakladkiAdoNet
             txtPassword.Text = "";
         }
 
-
         private void PreviewPage(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
             this.Close();
         }
-        public void CheckARegistrationInfo()
-        {
-            if (txtUsername.Text == "Enter your username:" || txtPassword.Text == "Enter your password:")
-            {
-                MessageBox.Show("Please write your username and password that you will use!");
-            }
-            else if (txtPassword.Text == "" || txtUsername.Text == "")
-            {
-                MessageBox.Show("Please fill in the empty fields!");
-            }
-            //else if()
-            //{
-            //
-            //} 
-            else
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
-        }
 
         private void RegistrationAccount(object sender, RoutedEventArgs e)
         {
-            try
+            if (txtPassword.Text == "" || txtUsername.Text == "")
             {
-                HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                StreamWriter stream = new StreamWriter(request.GetRequestStream());
-                string json = JsonConvert.SerializeObject(new UserModel()
-                {
-                    Login = txtLogIn.Text,
-                    Password = txtPassword.Text,
-                    Role = false
-                });
-                stream.Write(json);
-                WebResponse response = request.GetResponse();
-                MessageBox.Show(response.ToString());
-                stream.Close();
-
+                MessageBox.Show("Please fill in the empty fields!");
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
+                    request.Method = "POST";
+                    request.ContentType = "application/json";
+                    StreamWriter stream = new StreamWriter(request.GetRequestStream());
+                    string json = JsonConvert.SerializeObject(new UserModel()
+                    {
+                        Login = txtUsername.Text,
+                        Password = txtPassword.Text,
+                        Role = false
+                    });
+                    stream.Write(json);
+                    WebResponse response = request.GetResponse();
+                    MessageBox.Show(response.ToString());
+                    stream.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                LogIn logIn = new LogIn();
+                logIn.Show();
+                this.Close();
             }
         }
     }
