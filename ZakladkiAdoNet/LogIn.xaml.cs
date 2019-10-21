@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZakladkiAdoNet.Models;
 
 namespace ZakladkiAdoNet
 {
@@ -43,16 +47,26 @@ namespace ZakladkiAdoNet
             }
             else
             {
-                if (txtUsername.Text == )
+                try
                 {
-
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
+                    HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/loginUser");
+                    request.Method = "POST";
+                    request.ContentType = "application/json";
+                    using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
+                    {
+                        string json = JsonConvert.SerializeObject(new LogInModel()
+                        {
+                            Login = txtUsername.Text,
+                            Password = txtPassword.Text
+                        });
+                        stream.Write(json);
+                    }
+                    WebResponse response = request.GetResponse();
+                    MessageBox.Show(response.ToString());
                 }
-                else
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message);
                 }
             }
         }

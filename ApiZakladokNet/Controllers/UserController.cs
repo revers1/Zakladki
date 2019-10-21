@@ -59,16 +59,17 @@ namespace ApiZakladokNet.Controllers
             }
             else return Content("Didnt delete user");
         }
-
-        public void CheckLogin([FromBody]LogInViewModel model)
+        [HttpPost("loginUser")]
+        public IActionResult CheckLogin([FromBody]LogInViewModel model)
         {
-            if (model.Password)
+            var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password);
+            if (user != null)
             {
-
+               return this.Ok(user.Id.ToString());
             }
             else
             {
-
+                return this.BadRequest();
             }
         }
     }
