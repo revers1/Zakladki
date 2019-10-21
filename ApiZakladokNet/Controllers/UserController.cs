@@ -17,8 +17,7 @@ namespace ApiZakladokNet.Controllers
         private readonly EFContext context;
 
         public UserController(EFContext ccontext)
-        { context = ccontext;
-        }
+        { context = ccontext; }
 
        
         [HttpGet("getUser")]
@@ -58,7 +57,19 @@ namespace ApiZakladokNet.Controllers
                 context.SaveChanges();
                 return Content("deleted user");
             }
-            else return Content("didnt delete user");
+            else return Content("Didnt delete user");
+        }
+
+        public void CheckLogin([FromBody]LogInViewModel model)
+        {
+            if (model.Password)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

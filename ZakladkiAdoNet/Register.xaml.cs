@@ -37,27 +37,19 @@ namespace ZakladkiAdoNet
             txtPassword.Text = "";
         }
 
-
         private void PreviewPage(object sender, RoutedEventArgs e)
         {
             LogIn logIn = new LogIn();
             logIn.Show();
             this.Close();
         }
-        public void CheckARegistrationInfo()
+
+        private void RegistrationAccount(object sender, RoutedEventArgs e)
         {
-            if (txtUsername.Text == "Enter your username:" || txtPassword.Text == "Enter your password:")
-            {
-                MessageBox.Show("Please write your username and password that you will use!");
-            }
-            else if (txtPassword.Text == "" || txtUsername.Text == "")
+            if (txtPassword.Text == "" || txtUsername.Text == "")
             {
                 MessageBox.Show("Please fill in the empty fields!");
             }
-            //else if()
-            //{
-            //
-            //} 
             else
             {
                 MainWindow mainWindow = new MainWindow();
@@ -70,7 +62,7 @@ namespace ZakladkiAdoNet
         {
             try
             {
-                HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49489/api/user/addUser");
+                HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -82,12 +74,18 @@ namespace ZakladkiAdoNet
                 });
                 stream.Write(json);
                 WebResponse response = request.GetResponse();
-               // MessageBox.Show(response.ToString());
+                MessageBox.Show(response.ToString());
+                stream.Close();
 
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                LogIn logIn = new LogIn();
+                logIn.Show();
+                this.Close();
             }
         }
     }

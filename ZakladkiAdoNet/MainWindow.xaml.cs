@@ -46,22 +46,12 @@ namespace ZakladkiAdoNet
 
         public void CheckAOrderInfo()
         {
-            if (txtName.Text == "Name:" ||
-                txtPrice.Text == "Price:" ||
-                txtComment.Text == "Comment: ")
-            {
-                MessageBox.Show("Please write name, price and comment to product!");
-            }
-            else if (txtName.Text == "" ||
+            if (txtName.Text == "" ||
                 txtPrice.Text == "" ||
                 txtComment.Text == "")
             {
                 MessageBox.Show("Please fill in the empty fields!");
             }
-            //else if()
-            //{
-            //
-            //} 
             else
             {
                 MainWindow mainWindow = new MainWindow();
