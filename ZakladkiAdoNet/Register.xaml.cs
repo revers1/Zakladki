@@ -57,7 +57,7 @@ namespace ZakladkiAdoNet
                 {
                     Login = txtLogIn.Text,
                     Password = txtPassword.Text,
-                    Role = false
+                 
                 });
                 stream.Write(json);
                 WebResponse response = request.GetResponse();
