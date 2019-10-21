@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.Maps.MapControl.WPF;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -91,12 +92,28 @@ namespace ZakladkiAdoNet
                 Price = decimal.Parse(txtPrice.Text),
                 Description = txtComment.Text,
                 Imagge = Convert.ToBase64String(imgbyte),
-                Quantity =float.Parse(txtQuantity.Text)
-                    
-            });
+                Quantity = float.Parse(txtQuantity.Text),
+                CoordX = txtcoordx.Text,
+                CoordY = txtcoordy.Text
+
+
+
+        });
             stream.Write(json);
             stream.Close();
             MessageBox.Show("added");
+        }
+
+        private void Map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MapLayer maplayer = new MapLayer();
+            Pushpin pin= new Pushpin();
+            pin.Location = Map.Center;
+            txtcoordx.Text = pin.Location.Latitude.ToString();
+            txtcoordy.Text = pin.Location.Longitude.ToString();
+            maplayer.Children.Add(pin);
+            Map.Children.Add(maplayer);
+
         }
     }
 }

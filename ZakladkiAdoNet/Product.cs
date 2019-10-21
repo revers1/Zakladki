@@ -17,5 +17,9 @@ namespace ZakladkiAdoNet
         public string Imagge { get; set; }
 
         public float Quantity { get; set; }
+
+        public string CoordX { get; set; }
+
+        public string CoordY { get; set; }
     }
 }
