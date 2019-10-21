@@ -22,6 +22,8 @@ namespace ApiZakladokNet.Entity
         [Required]
         [ForeignKey("UserOrder")]
         public int User_Id { get; set; }
+
+
         public virtual User UserOrder { get; set; }
         public virtual Product ProductOrder { get; set; }
 

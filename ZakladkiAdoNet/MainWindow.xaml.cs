@@ -1,7 +1,10 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +36,7 @@ namespace ZakladkiAdoNet
         private void PriceOfProduct(object sender, RoutedEventArgs e)
         {
             txtPrice.Text = "";
+            txtQuantity.Text = "";
         }
 
         private void CommentToProduct(object sender, RoutedEventArgs e)
@@ -82,6 +86,27 @@ namespace ZakladkiAdoNet
 
 
 
+        }
+
+        private void Button_Add_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
+            HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:44357/api/Product/addProduct");
+            request.Method = "POST";
+            request.ContentType = "application/json";
+            StreamWriter stream = new StreamWriter(request.GetRequestStream());
+            string json = JsonConvert.SerializeObject(new Product()
+            {
+                Name = txtName.Text,
+                Price = decimal.Parse(txtPrice.Text),
+                Description = txtComment.Text,
+                Imagge = Convert.ToBase64String(imgbyte),
+                Quantity =float.Parse(txtQuantity.Text)
+                    
+            });
+            stream.Write(json);
+            stream.Close();
+            MessageBox.Show("added");
         }
     }
 }
