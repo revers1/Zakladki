@@ -68,9 +68,11 @@
     </Compile>
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Page Include="LogIn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

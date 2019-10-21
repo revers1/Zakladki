@@ -17,10 +17,11 @@ namespace ApiZakladokNet.Entity
         public string Name { get; set; }      
         [Required]
         public decimal Price { get; set; }
-        public string Description { get; set; }
+
         [Required]
         public float Quantity { get; set; }
 
+        public string Description { get; set; }
         public string Imagge { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
