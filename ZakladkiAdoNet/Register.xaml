@@ -31,7 +31,7 @@
                />
 
         <Label Grid.Row="1" Grid.Column="1"
-               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               Background="Orange" Foreground="#FF222222" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
                BorderBrush="Orange" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"

@@ -10,6 +10,6 @@ namespace ZakladkiAdoNet.Models
     {
         public string Login { get; set; }
         public string Password { get; set; }
-        public bool Role { get; set; }
+        public int Roles_Id { get; set; }
     }
 }

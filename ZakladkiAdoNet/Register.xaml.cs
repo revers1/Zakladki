@@ -52,22 +52,30 @@ namespace ZakladkiAdoNet
             }
             else
             {
-                try
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+        }
+
+        private void RegistrationAccount(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                StreamWriter stream = new StreamWriter(request.GetRequestStream());
+                string json = JsonConvert.SerializeObject(new UserModel()
                 {
-                    HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
-                    request.Method = "POST";
-                    request.ContentType = "application/json";
-                    StreamWriter stream = new StreamWriter(request.GetRequestStream());
-                    string json = JsonConvert.SerializeObject(new UserModel()
-                    {
-                        Login = txtUsername.Text,
-                        Password = txtPassword.Text,
-                        Role = false
-                    });
-                    stream.Write(json);
-                    WebResponse response = request.GetResponse();
-                    MessageBox.Show(response.ToString());
-                    stream.Close();
+                    Login = txtLogIn.Text,
+                    Password = txtPassword.Text,
+                    Role = false
+                });
+                stream.Write(json);
+                WebResponse response = request.GetResponse();
+                MessageBox.Show(response.ToString());
+                stream.Close();
 
                 }
                 catch (Exception ex)

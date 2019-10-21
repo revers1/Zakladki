@@ -16,10 +16,10 @@ namespace ApiZakladokNet.Entity
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
-        [Required][ForeignKey("Roles")]
+        [ForeignKey("RoleOf")]
         public int Roles_Id { get; set; }
 
-        public virtual Role Roles { get; set; }
+        public virtual Role RoleOf { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
 
