@@ -37,7 +37,7 @@ namespace ZakladkiAdoNet
         private void PriceOfProduct(object sender, RoutedEventArgs e)
         {
             txtPrice.Text = "";
-            txtQuantity.Text = "";
+          
         }
 
         private void CommentToProduct(object sender, RoutedEventArgs e)
@@ -71,8 +71,8 @@ namespace ZakladkiAdoNet
             if (op.ShowDialog() == true)
             {
                 PictureOfProductLocation.Source = new BitmapImage(new Uri(op.FileName));
+                textboxphoto.Text = op.FileName;
             }
-
 
 
 
@@ -82,7 +82,7 @@ namespace ZakladkiAdoNet
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:44357/api/Product/addProduct");
+            HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49856/api/Product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -113,7 +113,13 @@ namespace ZakladkiAdoNet
             txtcoordy.Text = pin.Location.Longitude.ToString();
             maplayer.Children.Add(pin);
             Map.Children.Add(maplayer);
+            Map.IsEnabled = false;
 
+        }
+
+        private void txtQuantity_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtQuantity.Text = "";
         }
     }
 }
