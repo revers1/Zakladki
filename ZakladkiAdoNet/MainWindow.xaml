@@ -58,6 +58,8 @@
             Text="Quantity:" GotFocus="PriceOfProduct"
             VerticalContentAlignment="Center"
             />
+        <m:Map x:Name="Map" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="107,0,0,0" MouseDoubleClick="Map_MouseDoubleClick"/>
+
 
         <!--ImageBox-->
         <Image x:Name="PictureOfProductLocation" 
@@ -68,14 +70,18 @@
         <Button BorderBrush="Orange"  BorderThickness="3" Background="Gray" Foreground="White" Content="Photo" HorizontalAlignment="Left" Margin="10,76,0,0" Grid.Row="2" VerticalAlignment="Top" Width="103" Height="32" Click="Button_Click"/>
         <Button Content="Добавить" Name="Button_Add" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Margin="372,55,0,0" Grid.Row="2" VerticalAlignment="Top" Width="183" Height="32" Click="Button_Add_Click" />
         <TextBox HorizontalAlignment="Left" Name="textboxphoto" Height="23" Margin="137,85,0,0" Grid.Row="2" TextWrapping="Wrap" Visibility="Hidden" Text="" VerticalAlignment="Top" Width="97"/>
-        <TextBox x:Name="txtQuantity" 
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtcoordx" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="633,25,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtcoordy" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="633,60,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <!--<TextBox x:Name="txtQuantity" 
             Grid.Row="2" Grid.Column="0" Margin="5,0,5,51"
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="25" FontFamily="Century Gothic"
             Text="Quantity:" GotFocus="PriceOfProduct"
             VerticalContentAlignment="Center"
-                 />
+                 />-->
 
     </Grid>
 </Window>
