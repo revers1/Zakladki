@@ -82,7 +82,7 @@ namespace ZakladkiAdoNet
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49856/api/Product/addProduct");
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49856/api/Product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -96,11 +96,14 @@ namespace ZakladkiAdoNet
                 CoordX = txtcoordx.Text,
                 CoordY = txtcoordy.Text
 
-
+               
 
         });
+            ClearAllFields();
             stream.Write(json);
             stream.Close();
+
+            WebResponse response = request.GetResponse();
             MessageBox.Show("added");
         }
 
@@ -120,6 +123,17 @@ namespace ZakladkiAdoNet
         private void txtQuantity_GotFocus(object sender, RoutedEventArgs e)
         {
             txtQuantity.Text = "";
+        }
+        public void ClearAllFields()
+        {
+            txtName.Text = "";
+            txtPrice.Text = "";
+            txtComment.Text = "";
+            PictureOfProductLocation.Source = null;
+            txtQuantity.Text = "";
+            txtcoordx.Text = "";
+            txtcoordy.Text = "";
+            Map.IsEnabled = true;
         }
     }
 }

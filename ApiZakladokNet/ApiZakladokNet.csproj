@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Entity\Identity\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Content\" />
   </ItemGroup>
 
   <ItemGroup>
