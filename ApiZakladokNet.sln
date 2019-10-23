@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiZakladokNet", "ApiZaklad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakladkiAdoNet", "ZakladkiAdoNet\ZakladkiAdoNet.csproj", "{8D5043DD-EA6D-4DA5-B22E-B6891C85C842}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminAdoNet", "AdminAdoNet\AdminAdoNet.csproj", "{7D37947D-3763-45AB-92D8-E34E230F1ABF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8D5043DD-EA6D-4DA5-B22E-B6891C85C842}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D5043DD-EA6D-4DA5-B22E-B6891C85C842}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D5043DD-EA6D-4DA5-B22E-B6891C85C842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D37947D-3763-45AB-92D8-E34E230F1ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D37947D-3763-45AB-92D8-E34E230F1ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D37947D-3763-45AB-92D8-E34E230F1ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D37947D-3763-45AB-92D8-E34E230F1ABF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
