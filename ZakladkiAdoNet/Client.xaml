@@ -13,7 +13,7 @@
                  Background="#FF222222" Foreground="White"
                  BorderThickness="7" BorderBrush="Orange"
                  FontSize="25" FontFamily="Century Gothic"
-                 Text="Name:" GotFocus="NameOfProduct"
+                 Text="Name:" 
                  VerticalContentAlignment="Center"
                  />
         <TextBox x:Name="txtQuantity" 
@@ -21,7 +21,7 @@
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="18" FontFamily="Century Gothic"
-            Text="Quantity gram/piece:" GotFocus="NameOfProduct"
+            Text="Quantity gram/piece:" 
             VerticalContentAlignment="Center"
                  />
         <TextBox x:Name="txtDescription" 
@@ -29,7 +29,7 @@
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="20" FontFamily="Century Gothic"
-            Text="Description/Preferences:" GotFocus="NameOfProduct"
+            Text="Description/Preferences:"
             VerticalContentAlignment="Center"
                  />
         <Image HorizontalAlignment="Left" Height="232" Margin="5,178,0,0" VerticalAlignment="Top" Width="241"/>
