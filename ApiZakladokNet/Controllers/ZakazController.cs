@@ -51,7 +51,7 @@ namespace ApiZakladokNet.Controllers
                 return Content("Error " + ex.Message);
             }
         }
-        [HttpDelete("deleteUser/{id}")]
+        [HttpDelete("deleteZakaz/{id}")]
         public ContentResult deletezakaz(int id, [FromBody]ZakazClient model)
         {
             var zakaz = context.Dbzakaz.FirstOrDefault(t => t.Id == id);
