@@ -14,11 +14,16 @@ namespace ApiZakladokNet.Entity
         }
 
         public DbSet<Product> Dbproduct { get; set; }
+        public DbSet<User> Dbuser { get; set; }
+        public DbSet<Role> Dbrole { get; set; }
+        public DbSet<ZakazClient> Dbzakaz { get; set; }
+        public DbSet<Boss> Dbboss { get; set; }
+
+        //public   DbSet<Order> Dborder { get; set; }
         public  DbSet<User> Dbuser { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-        //public   DbSet<Order> Dborder { get; set; }
     }
 }
