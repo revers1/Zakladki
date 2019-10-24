@@ -76,6 +76,7 @@
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="ZakazClient.cs" />
     <Page Include="Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
