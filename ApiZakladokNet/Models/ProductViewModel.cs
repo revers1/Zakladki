@@ -11,8 +11,9 @@ namespace ApiZakladokNet.Models
       
         public decimal Price { get; set; }
         public string Description { get; set; }
-
         public string Imagge { get; set; }
         public float Quantity { get; set; }
+        public string CoordX { get; set; }
+        public string CoordY { get; set; }
     }
 }

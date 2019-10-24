@@ -60,7 +60,9 @@ namespace ApiZakladokNet.Controllers
                     Price = model.Price,                 
                      Quantity = model.Quantity,
                      Description = model.Description,
-                     Imagge=path
+                     Imagge=path,
+                     CoordX=model.CoordX,
+                     CoordY=model.CoordY
                      
                 };
                 context.Dbproduct.Add(product);
