@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminAdoNet"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="650"
-        Background="#FF222222"
-        MinWidth="650" MinHeight="300"
-        MaxHeight="300" MaxWidth="650">
+        Title="Login" Height="450" Width="800"
+        MaxHeight="450" MaxWidth="800"
+        MinHeight="450" MinWidth="800"
+        Background="#FF222222">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -23,19 +23,61 @@
         </Grid.RowDefinitions>
 
         <!--Labels-->
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="15 4"
-               Background="#FF222222" Foreground="White"
-               BorderBrush="Orange" BorderThickness="3"
+        <Label Grid.Row="0" Grid.ColumnSpan="2"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               BorderBrush="Orange" BorderThickness="5"
                FontFamily="Century Gothic" FontSize="20"
-               HorizontalContentAlignment="Center" Content="Tovara.Net"/>
-        
-        <Label Grid.Column="0" Grid.Row="1" Margin="15 60"
-               Background="#FF222222" Foreground="White"
-               BorderBrush="Cyan" BorderThickness="3"
-               FontFamily="Century Gothic" FontSize="20"
-               VerticalContentAlignment="Center"
-               Content="Username"/>
+               VerticalAlignment="Center" Content="Tovara.Net"
+               />
 
-        <Label/>
+        <Label Grid.Row="1" Grid.Column="0"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               BorderBrush="Cyan" BorderThickness="5"
+               FontFamily="Century Gothic" FontSize="20"
+               VerticalAlignment="Center" Content="Username"
+               />
+
+        <Label Grid.Row="2" Grid.Column="0"
+               Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+               BorderBrush="Orange" BorderThickness="5"
+               FontFamily="Century Gothic" FontSize="20"
+               VerticalAlignment="Center" Content="Password"
+               />
+
+        <!--TextBoxes-->
+        <TextBox x:Name="txtUsernameOfBoss"
+                 Grid.Row="1" Grid.Column="1" Margin="5 57"
+                 Background="#FF222222" Foreground="White"
+                 BorderThickness="5" BorderBrush="Orange"
+                 FontFamily="Century Gothic" FontSize="20"
+                 GotFocus="GotFocusUserName" Text="Enter your username:"
+                 VerticalContentAlignment="Center"
+                 />
+
+        <TextBox x:Name="txtPasswordOfBoss"
+                 Grid.Row="2" Grid.Column="1" Margin="5 57"
+                 Background="#FF222222" Foreground="White"
+                 BorderThickness="5" BorderBrush="Cyan"
+                 FontFamily="Century Gothic" FontSize="20"
+                 GotFocus="GotFocusPassword" Text="Enter your password:"
+                 VerticalContentAlignment="Center"
+                 />
+
+        <!--Buttons-->
+        <Button x:Name="btnLogIn" Click="LogInProgramm"
+                Grid.Row="3" Grid.Column="1" Margin="5"
+                Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+                BorderBrush="Orange" BorderThickness="5"
+                FontFamily="Century Gothic" FontSize="17"
+                Content="LogIn"
+                />
+
+        <Button x:Name="btnRegisterBoss" Click="RegisterBoss"
+                Grid.Row="3" Grid.Column="0" Margin="5,5,5,0"
+                Background="#FF222222" Foreground="White" HorizontalContentAlignment="Center"
+                BorderBrush="Cyan" BorderThickness="5"
+                FontFamily="Century Gothic" FontSize="17"
+                Content="Registration" Height="39" VerticalAlignment="Top"
+                />
     </Grid>
 </Window>

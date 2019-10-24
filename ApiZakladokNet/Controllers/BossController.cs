@@ -23,23 +23,23 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getBoss")]
         public ContentResult GetBoss()
         {
-            List<Boss> bosses = _context.Bosses.ToList();
+            List<User> bosses = _context.Dbuser.ToList();
             string json = JsonConvert.SerializeObject(bosses);
             return Content(json, "application/json");
         }
 
         [HttpPost("addBoss")]
-        public ContentResult AddUser([FromBody]BossViewModel model)
+        public ContentResult AddBoss([FromBody]BossViewModel model)
         {
             try
             {
-                Boss boss = new Boss()
+                User user = new User()
                 {
-                    Username = model.UserName,
+                    Login = model.UserName,
                     Password = model.Password
                 };
 
-                _context.Bosses.Add(boss);
+                _context.Dbuser.Add(user);
                 _context.SaveChanges();
                 return Content("Boss Added");
             }
@@ -49,23 +49,10 @@ namespace ApiZakladokNet.Controllers
             }
         }
 
-        [HttpDelete("deleteBoss/{id}")]
-        public ContentResult DeleteBoss(int id, [FromBody]BossViewModel model)
-        {
-            var boss = _context.Bosses.FirstOrDefault(t => t.Id == id);
-            if (boss != null)
-            {
-                _context.Remove(boss);
-                _context.SaveChanges();
-                return Content("Boss deleted.");
-            }
-            else return Content("User didn`t deleted");
-        }
-
-        [HttpPost("loginUser")]
+        [HttpPost("loginBoss")]
         public IActionResult CheckLogin([FromBody]LogInViewModel model)
         {
-            var boss = _context.Bosses.FirstOrDefault(t => t.Username == model.Login && t.Password == model.Password);
+            var boss = _context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password && t.RoleOf.Name=="Boss");
             if (boss != null)
             {
                 return Ok(boss.Id.ToString());
