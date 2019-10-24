@@ -14,7 +14,7 @@ namespace ApiZakladokNet.Entity
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }      
+        public string Name { get; set; }
         [Required]
         public decimal Price { get; set; }
         [Required]
@@ -26,6 +26,9 @@ namespace ApiZakladokNet.Entity
 
         public string Description { get; set; }
         public string Imagge { get; set; }
+        [ForeignKey("UserOf")]
+        public int User_Id { get; set; }
+        public virtual User UserOf { get; set; }
 
         //public virtual ICollection<Order> Orders { get; set; }
     }
