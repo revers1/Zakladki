@@ -135,5 +135,28 @@ namespace ZakladkiAdoNet
             txtcoordy.Text = "";
             Map.IsEnabled = true;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //ButtonRefreshListBox
+            HttpWebRequest request = HttpWebRequest.CreateHttp($"https://localhost:44357/api/zakaz/getZakaz");
+            request.Method = "GET";
+            request.ContentType = "application/json";
+            var response = request.GetResponse();
+            string res = "";
+            ZakazClient zakaz;
+            using (Stream stream = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream);
+                res += reader.ReadToEnd();
+                 zakaz = JsonConvert.DeserializeObject<ZakazClient>(res);
+            }
+            listboxClient.Items.Add(zakaz.Name);
+            listboxClient.Items.Add(zakaz.Quantity);
+            listboxClient.Items.Add(zakaz.Description);
+            MessageBox.Show(res);
+           
+
+        }
     }
 }

@@ -34,7 +34,7 @@
             VerticalContentAlignment="Center"
                  />
         <Image HorizontalAlignment="Left" Height="267" Margin="5,143,0,0" VerticalAlignment="Top" Width="241"/>
-        <Button Name="buttonzakazat" BorderBrush="Orange" BorderThickness="3"  Background="Black" Foreground="White" Margin="558,10,134,374">Заказать</Button>
+        <Button Name="buttonzakazat" BorderBrush="Orange" BorderThickness="3"  Background="Black" Foreground="White" Margin="558,10,134,374" Click="buttonzakazat_Click">Заказать</Button>
         <Button  Name="buttonbuy" BorderBrush="Orange" BorderThickness="3" Background="Black" Foreground="White" Margin="682,79,10,305">Купить</Button>
 
         <m:Map x:Name="Map" IsEnabled="False" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Margin="251,143,0,10" MouseDoubleClick="Map_MouseDoubleClick"/>
