@@ -55,7 +55,7 @@
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="25" FontFamily="Century Gothic"
-            Text="Quantity:" GotFocus="PriceOfProduct"
+            Text="Quantity:" GotFocus='txtQuantity_GotFocus'
             VerticalContentAlignment="Center"
             />
         <m:Map x:Name="Map" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="107,0,0,0" MouseDoubleClick="Map_MouseDoubleClick"/>

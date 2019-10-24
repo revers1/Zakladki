@@ -49,7 +49,8 @@ namespace ZakladkiAdoNet
             {
                 try
                 {
-                    HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/loginUser");
+
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49388/api/user/loginUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
@@ -62,11 +63,20 @@ namespace ZakladkiAdoNet
                         stream.Write(json);
                     }
                     WebResponse response = request.GetResponse();
-                    MessageBox.Show(response.ToString());
+                    MainWindow mw = new MainWindow();
+                    MessageBox.Show(request.ToString());
+                    mw.Show();
+                    this.Close();
+
+
+
+
+
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Try again!", "Fail", MessageBoxButton.OK);
                 }
             }
         }

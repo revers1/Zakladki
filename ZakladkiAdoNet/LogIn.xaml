@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:ZakladkiAdoNet"
         mc:Ignorable="d"
         Title="LogIn" Height="450" Width="800"
-        MaxHeight="450" MaxWidth="800"
-        Background="#FF222222">
+        Background="#FF222222" MinHeight="450" MinWidth="800"
+        MaxHeight="450" MaxWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

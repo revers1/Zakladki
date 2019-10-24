@@ -54,7 +54,7 @@ namespace ZakladkiAdoNet
             {
                 try
                 {
-                    HttpWebRequest request = HttpWebRequest.CreateHttp("https://localhost:49489/api/user/addUser");
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/addUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
