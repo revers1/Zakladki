@@ -55,5 +55,14 @@
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <!--Buttons-->
+        <Button x:Name="btnBlock" Click="BlockClient"
+                Grid.Column="0" Grid.Row="1" Margin="10"
+                VerticalAlignment="Center"
+                Background="#FF222222" Foreground="White"
+                BorderBrush="Orange" BorderThickness="4"
+                FontSize="20" FontFamily="Century Gothic"
+                Content="Block Client"/>
     </Grid>
 </Window>
