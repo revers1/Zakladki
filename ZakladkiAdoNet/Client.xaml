@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladkiAdoNet"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
         Title="Client" Height="450" Width="800"
         MaxHeight="450" MaxWidth="800" Background="Gray">
@@ -32,6 +33,11 @@
             Text="Description/Preferences:"
             VerticalContentAlignment="Center"
                  />
-        <Image HorizontalAlignment="Left" Height="232" Margin="5,178,0,0" VerticalAlignment="Top" Width="241"/>
+        <Image HorizontalAlignment="Left" Height="267" Margin="5,143,0,0" VerticalAlignment="Top" Width="241"/>
+        <Button Name="buttonzakazat" BorderBrush="Orange" BorderThickness="3" Background="Black" Foreground="White" Margin="558,10,134,374">Заказать</Button>
+        <Button Name="buttonbuy" BorderBrush="Orange" BorderThickness="3" Background="Black" Foreground="White" Margin="682,79,10,305">Купить</Button>
+
+        <m:Map x:Name="Map" IsEnabled="False" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Margin="251,143,0,10" MouseDoubleClick="Map_MouseDoubleClick"/>
+
     </Grid>
 </Window>
