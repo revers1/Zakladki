@@ -6,9 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladkiAdoNet"
         mc:Ignorable="d"
-        Title="Tovara.Net" Height="600" Width="1024"
+        Title="Tovara.Net"
+        Height="600" Width="1024"
+        MaxHeight="1200" MaxWidth="2048"
+        MinHeight="600" MinWidth="1024"
         WindowStartupLocation="CenterScreen"
-        MaxHeight="1200" MaxWidth="2048" Background="#FF222222">
+        Background="#FF222222">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>

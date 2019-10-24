@@ -3,18 +3,20 @@ using ApiZakladokNet.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiZakladokNet.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20191024153802_Add tblBosses")]
+    partial class AddtblBosses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -58,12 +60,7 @@ namespace ApiZakladokNet.Migrations
 
                     b.Property<float>("Quantity");
 
-                    b.Property<int>("User_Id");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("User_Id")
-                        .IsUnique();
 
                     b.ToTable("Product");
                 });
@@ -101,14 +98,6 @@ namespace ApiZakladokNet.Migrations
                     b.HasIndex("Roles_Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("ApiZakladokNet.Entity.Product", b =>
-                {
-                    b.HasOne("ApiZakladokNet.Entity.User", "UserOf")
-                        .WithOne("ProductOf")
-                        .HasForeignKey("ApiZakladokNet.Entity.Product", "User_Id")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ApiZakladokNet.Entity.User", b =>
