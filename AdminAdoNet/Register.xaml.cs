@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AdminAdoNet.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,33 +14,38 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ZakladkiAdoNet.Models;
 
-namespace ZakladkiAdoNet
+namespace AdminAdoNet
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Register.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class Register : Window
     {
-        public LogIn()
+        public Register()
         {
             InitializeComponent();
         }
 
-        private void GotFocusUserName(object sender, RoutedEventArgs e)
+        private void PreviewPage(object sender, RoutedEventArgs e)
+        {
+            LoginBoss logIn = new LoginBoss();
+            logIn.Show();
+            this.Close();
+        }
+
+        private void GotFocusLoginBoss(object sender, RoutedEventArgs e)
         {
             txtUsername.Text = "";
         }
 
-        private void GotFocusPassword(object sender, RoutedEventArgs e)
+        private void GotFocusPasswordBoss(object sender, RoutedEventArgs e)
         {
             txtPassword.Text = "";
         }
 
-        private void LogInProgramm(object sender, RoutedEventArgs e)
+        private void RegistrationAccount(object sender, RoutedEventArgs e)
         {
             if (txtPassword.Text == "" || txtUsername.Text == "")
             {
@@ -49,37 +55,33 @@ namespace ZakladkiAdoNet
             {
                 try
                 {
-
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49388/api/user/loginUser");
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/boss/addBoss");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
                     {
-                        string json = JsonConvert.SerializeObject(new LogInModel()
+                        string json = JsonConvert.SerializeObject(new BossModel()
                         {
-                            Login = txtUsername.Text,
+                            Username = txtUsername.Text,
                             Password = txtPassword.Text
                         });
                         stream.Write(json);
                     }
                     WebResponse response = request.GetResponse();
-                    MainWindow mw = new MainWindow();
-                    MessageBox.Show(request.ToString());
-                    mw.Show();
-                    this.Close();
+                    MessageBox.Show(response.ToString());
+
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Try again!", "Fail", MessageBoxButton.OK);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-        }
 
-        private void RegisterProgramm(object sender, RoutedEventArgs e)
-        {
-            Register register = new Register();
-            register.Show();
-            this.Close();
+                LoginBoss logIn = new LoginBoss();
+                logIn.Show();
+                this.Close();
+            }
         }
     }
 }
+

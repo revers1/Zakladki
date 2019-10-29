@@ -58,7 +58,7 @@
         
         <!--Buttons-->
         <Button x:Name="btnBlock" Click="BlockClient"
-                Grid.Column="0" Grid.Row="1" Margin="10"
+                Grid.Column="0" Grid.Row="1" Margin="20 10 10 10"
                 VerticalAlignment="Center"
                 Background="#FF222222" Foreground="White"
                 BorderBrush="Orange" BorderThickness="4"
