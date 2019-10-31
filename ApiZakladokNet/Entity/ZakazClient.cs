@@ -21,5 +21,6 @@ namespace ApiZakladokNet.Entity
 
 
 
+
     }
 }

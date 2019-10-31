@@ -151,10 +151,11 @@ namespace ZakladkiAdoNet
                 res += reader.ReadToEnd();
                  zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
             }
-            listboxClient.Items.Add(zakaz);        
+            listboxClient.ItemsSource = zakaz;        
             MessageBox.Show(res);
           
 
         }
+       
     }
 }

@@ -79,5 +79,10 @@ namespace AdminAdoNet
             //register.Show();
             //this.Close();
         }
+
+        private void RegisterBoss(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
