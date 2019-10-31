@@ -55,7 +55,7 @@ namespace ApiZakladokNet.Controllers
         public ContentResult deletezakaz(int id, [FromBody]ZakazClient model)
         {
             var zakaz = context.Dbzakaz.FirstOrDefault(t => t.Id == id);
-            if (user != null)
+            if (zakaz != null)
             {
                 context.Remove(zakaz);
                 context.SaveChanges();

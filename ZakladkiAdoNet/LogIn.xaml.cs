@@ -64,7 +64,7 @@ namespace ZakladkiAdoNet
                     }
                     WebResponse response = request.GetResponse();
                     MainWindow mw = new MainWindow();
-                    MessageBox.Show(request.ToString());
+                    ////MessageBox.Show(request.ToString());
                     mw.Show();
                     this.Close();
                 }

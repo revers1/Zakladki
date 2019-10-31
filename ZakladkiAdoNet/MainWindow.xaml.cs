@@ -144,18 +144,16 @@ namespace ZakladkiAdoNet
             request.ContentType = "application/json";
             var response = request.GetResponse();
             string res = "";
-            ZakazClient zakaz;
+          List<ZakazClient> zakaz;
             using (Stream stream = response.GetResponseStream())
             {
                 StreamReader reader = new StreamReader(stream);
                 res += reader.ReadToEnd();
-                 zakaz = JsonConvert.DeserializeObject<ZakazClient>(res);
+                 zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
             }
-            listboxClient.Items.Add(zakaz.Name);
-            listboxClient.Items.Add(zakaz.Quantity);
-            listboxClient.Items.Add(zakaz.Description);
+            listboxClient.Items.Add(zakaz);        
             MessageBox.Show(res);
-           
+          
 
         }
     }

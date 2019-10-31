@@ -46,5 +46,10 @@ namespace ZakladkiAdoNet
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
         }
+
+        private void Buttonbuy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
