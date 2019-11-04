@@ -61,8 +61,11 @@ namespace ZakladkiAdoNet
                             Password = txtPassword.Text
                         });
                         stream.Write(json);
+                        
                     }
+               
                     WebResponse response = request.GetResponse();
+                   
                     MainWindow mw = new MainWindow();
                     ////MessageBox.Show(request.ToString());
                     mw.Show();

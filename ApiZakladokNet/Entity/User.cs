@@ -22,6 +22,7 @@ namespace ApiZakladokNet.Entity
         public virtual Role RoleOf { get; set; }
         //public virtual ICollection<Order> Orders { get; set; }
         public virtual Product ProductOf { get; set; }
+        public virtual ICollection<ZakazClient> ZakazOf { get; set; }
 
 
     }

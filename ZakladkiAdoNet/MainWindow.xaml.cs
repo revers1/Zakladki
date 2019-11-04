@@ -81,8 +81,10 @@ namespace ZakladkiAdoNet
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
+            Client client = new Client();
+           
             byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49856/api/Product/addProduct");
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:56646/api/Product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -105,6 +107,9 @@ namespace ZakladkiAdoNet
 
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
+       
+
+
         }
 
         private void Map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -139,7 +144,7 @@ namespace ZakladkiAdoNet
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //ButtonRefreshListBox
-            HttpWebRequest request = HttpWebRequest.CreateHttp($"https://localhost:44357/api/zakaz/getZakaz");
+            HttpWebRequest request = HttpWebRequest.CreateHttp($"http://localhost:56646/api/zakaz/getZakaz");
             request.Method = "GET";
             request.ContentType = "application/json";
             var response = request.GetResponse();
@@ -152,7 +157,7 @@ namespace ZakladkiAdoNet
                  zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
             }
             listboxClient.ItemsSource = zakaz;        
-            MessageBox.Show(res);
+            //MessageBox.Show(res);
           
 
         }

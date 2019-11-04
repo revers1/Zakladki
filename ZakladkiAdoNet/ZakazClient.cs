@@ -13,10 +13,11 @@ namespace ZakladkiAdoNet
         public string Description { get; set; }
 
         public float Quantity { get; set; }
+
         public override string ToString()
         {
 
-            return $"{Name}" + $"{Quantity}"+ $"{Description}";
+            return $"Name: {Name}\t" + $"Quantity: {Quantity}\t"+ $"Description: {Description}";
         }
     }
    

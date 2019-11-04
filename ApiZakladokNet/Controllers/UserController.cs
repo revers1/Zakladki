@@ -65,7 +65,7 @@ namespace ApiZakladokNet.Controllers
             var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password);
             if (user != null)
             {
-               return this.Ok(user.Id.ToString());
+               return this.Ok(new { userId = user.Id.ToString(), roleName = user.RoleOf.Name });
             }
             else
             {
