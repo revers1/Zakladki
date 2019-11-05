@@ -50,7 +50,7 @@ namespace ZakladkiAdoNet
                 try
                 {
 
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:56646/api/user/loginUser");
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49421/api/user/loginUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
@@ -72,7 +72,8 @@ namespace ZakladkiAdoNet
                         model2 = JsonConvert.DeserializeObject<LoginResultViewModel>(json);
                     }
 
-                    if (model2.Roles_Name == "Manager")
+                   
+                    if (model2.RoleName == "Manager")
                     {
                         MainWindow mw = new MainWindow();
                         mw.Show();

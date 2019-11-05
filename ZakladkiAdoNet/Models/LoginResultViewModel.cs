@@ -8,7 +8,7 @@ namespace ZakladkiAdoNet.Models
 {
     public class LoginResultViewModel
     {
-        public int User_Id { get; set; }
-        public string Roles_Name { get; set; }
+        public int UserId { get; set; }
+        public string RoleName { get; set; }
     }
 }
