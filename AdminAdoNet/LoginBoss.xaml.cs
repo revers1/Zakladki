@@ -40,6 +40,19 @@ namespace AdminAdoNet
 
         private void LogInProgramm(object sender, RoutedEventArgs e)
         {
+            CheckALogin();
+        }
+
+        private void LoginKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CheckALogin();
+            }
+        }
+
+        public void CheckALogin()
+        {
             if (txtPasswordOfBoss.Text == "" || txtUsernameOfBoss.Text == "")
             {
                 MessageBox.Show("Please fill in the empty fields!");
@@ -66,18 +79,23 @@ namespace AdminAdoNet
                     admin.Show();
                     this.Close();
                 }
-                catch (Exception ex)
+                catch ( Exception )
                 {
                     MessageBox.Show("Try again!", "Fail", MessageBoxButton.OK);
                 }
             }
+
+            /* CHECK A LOGIN */
+            //AdminWindow admin = new AdminWindow();
+            //admin.Show();
+            //Close();
         }
 
-        private void RegisterProgramm(object sender, RoutedEventArgs e)
+        private void RegisterBoss(object sender, RoutedEventArgs e)
         {
-            //Register register = new Register();
-            //register.Show();
-            //this.Close();
+            Register register = new Register();
+            register.Show();
+            this.Close();
         }
 
         private void RegisterBoss(object sender, RoutedEventArgs e)

@@ -13,9 +13,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -34,35 +31,23 @@
                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                Content="Tovara.Net"/>
 
-        <!--DataGrids-->
-        <DataGrid x:Name="dgOfUsers" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
-                  Margin="20 10"
-                  Background="#FF222222" Foreground="#FF222222"
-                  FontSize="15" FontFamily="Century Gothic">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Username" Binding="{Binding Username}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <DataGrid x:Name="dgOfProducts" Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
-                  Margin="20 10"
-                  Background="#FF222222" Foreground="#FF222222"
-                  FontSize="15" FontFamily="Century Gothic">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
         <!--Buttons-->
-        <Button x:Name="btnBlock" Click="BlockClient"
+        <Button x:Name="ListOfUsers" Click="OpenListOfUsers"
                 Grid.Column="0" Grid.Row="1" Margin="20 10 10 10"
                 VerticalAlignment="Center"
                 Background="#FF222222" Foreground="White"
                 BorderBrush="Orange" BorderThickness="4"
                 FontSize="20" FontFamily="Century Gothic"
-                Content="Block Client"/>
+                Content="Open list of users"/>
+
+        <Button x:Name="ListOfProducts" Click="OpenListOfPOrders"
+                Grid.Column="1" Grid.Row="1" Margin="20 10 10 10"
+                VerticalAlignment="Center"
+                Background="#FF222222" Foreground="White"
+                BorderBrush="Orange" BorderThickness="4"
+                FontSize="20" FontFamily="Century Gothic"
+                Content="Open list of orders"/>
+        
+        
     </Grid>
 </Window>

@@ -61,6 +61,7 @@
                  FontFamily="Century Gothic" FontSize="20"
                  GotFocus="GotFocusPassword" Text="Enter your password:"
                  VerticalContentAlignment="Center"
+                 KeyDown="LoginKeyDown"
                  />
 
         <!--Buttons-->

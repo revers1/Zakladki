@@ -55,7 +55,7 @@ namespace AdminAdoNet
             {
                 try
                 {
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/boss/addBoss");
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:51295/api/boss/addBoss");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
@@ -69,8 +69,6 @@ namespace AdminAdoNet
                     }
                     WebResponse response = request.GetResponse();
                     MessageBox.Show(response.ToString());
-
-
                 }
                 catch (Exception ex)
                 {
