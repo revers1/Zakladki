@@ -62,7 +62,8 @@ namespace ApiZakladokNet.Controllers
                      Description = model.Description,
                      Imagge=path,
                      CoordX=model.CoordX,
-                     CoordY=model.CoordY
+                     CoordY=model.CoordY,
+                     User_Id=model.User_Id
                      
                 };
                 context.Dbproduct.Add(product);
@@ -73,6 +74,13 @@ namespace ApiZakladokNet.Controllers
             {
                 return Content("Error " + ex.Message);
             }
+        }
+        [HttpGet("getProductOne/{id}")]
+        public ContentResult GetProductsOne(int id)
+        {
+            var product = context.Dbproduct.Where(w=>w.User_Id==id);
+            string json = JsonConvert.SerializeObject(product);
+            return Content(json, "application/json");
         }
         [HttpDelete("deleteProduct/{id}")]
         public ContentResult DeleteProduct(int id)

@@ -75,10 +75,12 @@
     <Compile Include="Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logined.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\LogInModel.cs" />
+    <Compile Include="Models\LoginResultViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Register.xaml.cs">

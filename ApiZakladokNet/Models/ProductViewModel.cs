@@ -15,5 +15,6 @@ namespace ApiZakladokNet.Models
         public float Quantity { get; set; }
         public string CoordX { get; set; }
         public string CoordY { get; set; }
+        public int User_Id { get; set; }
     }
 }

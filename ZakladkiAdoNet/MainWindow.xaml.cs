@@ -97,7 +97,7 @@ namespace ZakladkiAdoNet
                 Quantity = float.Parse(txtQuantity.Text),
                 CoordX = txtcoordx.Text,
                 CoordY = txtcoordy.Text
-
+                
                
 
         });
@@ -156,11 +156,22 @@ namespace ZakladkiAdoNet
                 res += reader.ReadToEnd();
                  zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
             }
-            listboxClient.ItemsSource = zakaz;        
+            listboxClient.ItemsSource = zakaz;
             //MessageBox.Show(res);
-          
-
+            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"http://localhost:56646/api/product/getProductOne/"+$"{Logined.Id}");
+            request2.Method = "GET";
+            request2.ContentType = "application/json";
+            var response2 = request.GetResponse();
+            string res2 = "";
+            List<Product> products;
+            using (Stream stream = response2.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream);
+                res2 += reader.ReadToEnd();
+                products = JsonConvert.DeserializeObject<List<Product>>(res2);
+            }
+            listboxProduct.ItemsSource = products;
         }
-       
+
     }
 }
