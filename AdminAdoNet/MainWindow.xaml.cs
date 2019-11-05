@@ -25,9 +25,16 @@ namespace AdminAdoNet
             InitializeComponent();
         }
 
-        private void BlockClient(object sender, RoutedEventArgs e)
+        private void OpenListOfUsers(object sender, RoutedEventArgs e)
         {
+            ListOfUsers listOfUsers = new ListOfUsers();
+            listOfUsers.Show();
+        }
 
+        private void OpenListOfPOrders(object sender, RoutedEventArgs e)
+        {
+            ListOfOrders listOfOrders = new ListOfOrders();
+            listOfOrders.Show();
         }
     }
 }

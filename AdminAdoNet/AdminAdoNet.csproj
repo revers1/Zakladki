@@ -59,9 +59,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ListOfUsers.xaml.cs">
+      <DependentUpon>ListOfUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListOfOrders.xaml.cs">
+      <DependentUpon>ListOfOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Page Include="ListOfUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListOfOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginBoss.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
