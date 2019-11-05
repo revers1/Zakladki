@@ -13,11 +13,11 @@ namespace ApiZakladokNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class ZakazController : ControllerBase
     {
         private readonly EFContext context;
         private readonly IHostingEnvironment appEnvironment;
-        public OrderController(EFContext ccontext, IHostingEnvironment appenv)
+        public ZakazController(EFContext ccontext, IHostingEnvironment appenv)
         {
             context = ccontext;
             appEnvironment = appenv;

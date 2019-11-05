@@ -18,6 +18,10 @@ namespace ApiZakladokNet.Entity
         public float Quantity { get; set; }
 
         public string Description { get; set; }
+        [ForeignKey("UserOf")]
+        public int UserId { get; set; }
+        public virtual User UserOf { get; set; }
+
 
 
 

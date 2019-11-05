@@ -50,7 +50,7 @@ namespace ZakladkiAdoNet
                 try
                 {
 
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49388/api/user/loginUser");
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:56646/api/user/loginUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
@@ -61,12 +61,31 @@ namespace ZakladkiAdoNet
                             Password = txtPassword.Text
                         });
                         stream.Write(json);
+                        
                     }
+               
                     WebResponse response = request.GetResponse();
-                    MainWindow mw = new MainWindow();
-                    MessageBox.Show(request.ToString());
-                    mw.Show();
-                    this.Close();
+                    LoginResultViewModel model2;
+                    using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
+                    {
+                         string json = streamReader.ReadToEnd();
+                        model2 = JsonConvert.DeserializeObject<LoginResultViewModel>(json);
+                    }
+
+                    if (model2.Roles_Name == "Manager")
+                    {
+                        MainWindow mw = new MainWindow();
+                        mw.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        Client mw = new Client();
+                        mw.Show();
+                        this.Close();
+                    }
+
+                    ////MessageBox.Show(request.ToString());
                 }
                 catch (Exception ex)
                 {

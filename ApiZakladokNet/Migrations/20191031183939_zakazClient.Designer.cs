@@ -3,14 +3,16 @@ using ApiZakladokNet.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiZakladokNet.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20191031183939_zakazClient")]
+    partial class zakazClient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,11 +101,7 @@ namespace ApiZakladokNet.Migrations
 
                     b.Property<float>("Quantity");
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ZakazClient");
                 });
@@ -121,14 +119,6 @@ namespace ApiZakladokNet.Migrations
                     b.HasOne("ApiZakladokNet.Entity.Role", "RoleOf")
                         .WithMany("Users")
                         .HasForeignKey("Roles_Id")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ApiZakladokNet.Entity.ZakazClient", b =>
-                {
-                    b.HasOne("ApiZakladokNet.Entity.User", "UserOf")
-                        .WithMany("ZakazOf")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
