@@ -8,11 +8,12 @@
         Title="List of users"
         Background="#FF222222"
         Height="450" Width="350"
+        MaxHeight="450" MaxWidth="350"
         MinHeight="450" MinWidth="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.45*"/>
         </Grid.ColumnDefinitions>
 
         <DataGrid x:Name="dgOfUsers" Grid.Column="0"
@@ -29,11 +30,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             
             <!--Buttons-->
             <Button x:Name="btnBlock" Click="BlockUser"
-                    Margin="5 60"
+                    Margin="5 30"
                     Background="#FF222222" Foreground="White"
                     BorderBrush="Orange" BorderThickness="3">
                 <TextBlock FontSize="20" FontFamily="Century Gothic"
@@ -42,11 +44,20 @@
             </Button>
 
             <Button x:Name="btnUnblock" Click="UblockUser"
-                    Margin="5 60" Grid.Row="1"
+                    Margin="5 30" Grid.Row="1"
                     Background="#FF222222" Foreground="White"
                     BorderBrush="Orange" BorderThickness="3">
                 <TextBlock FontSize="20" FontFamily="Century Gothic"
                            Text="Unblock User" TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+
+            <Button x:Name="btnChangeRole" Click="ChangeRoleOfUser"
+                    Margin="5 30" Grid.Row="2"
+                    Background="#FF222222" Foreground="White"
+                    BorderBrush="Orange" BorderThickness="3">
+                <TextBlock FontSize="20" FontFamily="Century Gothic"
+                           Text="Change role of User" TextWrapping="Wrap"
                            TextAlignment="Center"/>
             </Button>
         </Grid>

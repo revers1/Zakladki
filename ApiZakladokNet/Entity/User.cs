@@ -24,6 +24,8 @@ namespace ApiZakladokNet.Entity
         public virtual Product ProductOf { get; set; }
         public virtual ICollection<ZakazClient> ZakazOf { get; set; }
 
-
+        public virtual IsBloked Bloked { get; set; }
+        [ForeignKey("Bloked")]
+        public int Bloked_Id { get; set; }
     }
 }

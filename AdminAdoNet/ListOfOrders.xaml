@@ -8,6 +8,7 @@
         Title="List of products"
         Background="#FF222222"
         Height="450" Width="300"
+        MaxHeight="450" MaxWidth="300"
         MinHeight="450" MinWidth="300">
     <Grid>
         <DataGrid x:Name="dgOfOrders" Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2"

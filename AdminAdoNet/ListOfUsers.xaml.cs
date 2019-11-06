@@ -29,7 +29,7 @@ namespace AdminAdoNet
 
             List<UserModel> list = new List<UserModel>();
 
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:51295/api/user/getUser/");
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/getUser/");
             request.Method = "GET";
             request.ContentType = "application/json";
 
@@ -50,6 +50,11 @@ namespace AdminAdoNet
         }
 
         private void UblockUser(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangeRoleOfUser(object sender, RoutedEventArgs e)
         {
 
         }

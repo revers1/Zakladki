@@ -79,7 +79,7 @@ namespace AdminAdoNet
                     admin.Show();
                     this.Close();
                 }
-                catch ( Exception )
+                catch (Exception)
                 {
                     MessageBox.Show("Try again!", "Fail", MessageBoxButton.OK);
                 }
@@ -96,11 +96,6 @@ namespace AdminAdoNet
             Register register = new Register();
             register.Show();
             this.Close();
-        }
-
-        private void RegisterBoss(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
