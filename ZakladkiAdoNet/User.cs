@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZakladkiAdoNet
 {
-    public  class User
+    public class User
     {
  
         public string Login { get; set; }

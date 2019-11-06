@@ -39,9 +39,11 @@ namespace ApiZakladokNet.Controllers
             {
                 ZakazClient zakazz = new ZakazClient()
                 {
-                    Name=model.Name,
-                    Quantity=model.Quantity,
-                    Description =model.Description
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    Description = model.Description,
+                    UserId = model.UserId
+               
                 };
                 context.Dbzakaz.Add(zakazz);
                 context.SaveChanges();

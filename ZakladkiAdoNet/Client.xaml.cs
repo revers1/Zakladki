@@ -30,14 +30,14 @@ namespace ZakladkiAdoNet
         private void buttonzakazat_Click(object sender, RoutedEventArgs e)
         {
            
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:56646/api/zakaz/addZakaz");
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49421/api/Zakaz/addZakaz");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
             string json = JsonConvert.SerializeObject(new ZakazClient()
             {
                 Name=txtName.Text,
-                Quantity=float.Parse( txtQuantity.Text),
+                Quantity=float.Parse(txtQuantity.Text),
                 Description=txtDescription.Text
             });         
             stream.Write(json);
