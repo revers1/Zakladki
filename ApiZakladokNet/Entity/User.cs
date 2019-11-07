@@ -16,6 +16,9 @@ namespace ApiZakladokNet.Entity
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public bool IsBlocked { get; set; }
+
         [ForeignKey("RoleOf")]
         public int Roles_Id { get; set; }
 
@@ -23,9 +26,5 @@ namespace ApiZakladokNet.Entity
         //public virtual ICollection<Order> Orders { get; set; }
         public virtual Product ProductOf { get; set; }
         public virtual ICollection<ZakazClient> ZakazOf { get; set; }
-
-        public virtual IsBloked Bloked { get; set; }
-        [ForeignKey("Bloked")]
-        public int Bloked_Id { get; set; }
     }
 }
