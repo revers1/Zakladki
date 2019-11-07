@@ -96,7 +96,8 @@ namespace ZakladkiAdoNet
                 Imagge = Convert.ToBase64String(imgbyte),
                 Quantity = float.Parse(txtQuantity.Text),
                 CoordX = txtcoordx.Text,
-                CoordY = txtcoordy.Text
+                CoordY = txtcoordy.Text,
+                User_Id=((Product)listboxProduct.SelectedItems[0]).User_Id
                 
                
 
