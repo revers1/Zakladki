@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiZakladokNet.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20191106175800_Bloked User")]
-    partial class BlokedUser
+    [Migration("20191107180729_Little change of user")]
+    partial class Littlechangeofuser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,26 +19,6 @@ namespace ApiZakladokNet.Migrations
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ApiZakladokNet.Entity.IsBloked", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Bloked");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<int>("Id_User");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_User");
-
-                    b.ToTable("tblUser_Is_Bloked");
-                });
 
             modelBuilder.Entity("ApiZakladokNet.Entity.Product", b =>
                 {
@@ -93,7 +73,7 @@ namespace ApiZakladokNet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Bloked_Id");
+                    b.Property<bool>("IsBlocked");
 
                     b.Property<string>("Login")
                         .IsRequired();
@@ -104,8 +84,6 @@ namespace ApiZakladokNet.Migrations
                     b.Property<int>("Roles_Id");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Bloked_Id");
 
                     b.HasIndex("Roles_Id");
 
@@ -134,14 +112,6 @@ namespace ApiZakladokNet.Migrations
                     b.ToTable("ZakazClient");
                 });
 
-            modelBuilder.Entity("ApiZakladokNet.Entity.IsBloked", b =>
-                {
-                    b.HasOne("ApiZakladokNet.Entity.User", "UserBloked")
-                        .WithMany()
-                        .HasForeignKey("Id_User")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("ApiZakladokNet.Entity.Product", b =>
                 {
                     b.HasOne("ApiZakladokNet.Entity.User", "UserOf")
@@ -152,11 +122,6 @@ namespace ApiZakladokNet.Migrations
 
             modelBuilder.Entity("ApiZakladokNet.Entity.User", b =>
                 {
-                    b.HasOne("ApiZakladokNet.Entity.IsBloked", "Bloked")
-                        .WithMany()
-                        .HasForeignKey("Bloked_Id")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("ApiZakladokNet.Entity.Role", "RoleOf")
                         .WithMany("Users")
                         .HasForeignKey("Roles_Id")
