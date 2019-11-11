@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZakladkiAdoNet.Config;
 using ZakladkiAdoNet.Models;
 
 namespace ZakladkiAdoNet
@@ -54,7 +55,7 @@ namespace ZakladkiAdoNet
             {
                 try
                 {
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/addUser");
+                    HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/user/addUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
@@ -63,7 +64,9 @@ namespace ZakladkiAdoNet
                         {
                             Login = txtUsername.Text,
                             Password = txtPassword.Text,
-                            Roles_Id = 1
+                            Roles_Id = 1,
+                            IsBanned = false
+                           
                         });
                         stream.Write(json);
                     }
