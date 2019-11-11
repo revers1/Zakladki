@@ -10,5 +10,7 @@ namespace ApiZakladokNet.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public int Roles_Id { get; set; }
+
+        public bool IsBlocked { get; set; }
     }
 }

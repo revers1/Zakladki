@@ -81,8 +81,10 @@ namespace ZakladkiAdoNet
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
+            Client client = new Client();
+           
             byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49856/api/Product/addProduct");
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49421/api/Product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -94,8 +96,9 @@ namespace ZakladkiAdoNet
                 Imagge = Convert.ToBase64String(imgbyte),
                 Quantity = float.Parse(txtQuantity.Text),
                 CoordX = txtcoordx.Text,
-                CoordY = txtcoordy.Text
-
+                CoordY = txtcoordy.Text,
+                User_Id=((Product)listboxProduct.SelectedItems[0]).User_Id
+                
                
 
         });
@@ -105,6 +108,9 @@ namespace ZakladkiAdoNet
 
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
+       
+
+
         }
 
         private void Map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -135,5 +141,38 @@ namespace ZakladkiAdoNet
             txtcoordy.Text = "";
             Map.IsEnabled = true;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //ButtonRefreshListBox
+            HttpWebRequest request = WebRequest.CreateHttp($"http://localhost:49421/api/zakaz/getZakaz");
+            request.Method = "GET";
+            request.ContentType = "application/json";
+            var response = request.GetResponse();
+            string res = "";
+          List<ZakazClient> zakaz;
+            using (Stream stream = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream);
+                res += reader.ReadToEnd();
+                 zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
+            }
+            listboxClient.ItemsSource = zakaz;
+            //MessageBox.Show(res);
+            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"http://localhost:49421/api/product/getProductOne/" +$"{Logined.Id}");
+            request2.Method = "GET";
+            request2.ContentType = "application/json";
+            var response2 = request2.GetResponse();
+            string res2 = "";
+            List<Product> products;
+            using (Stream stream = response2.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream);
+                res2 += reader.ReadToEnd();
+                products = JsonConvert.DeserializeObject<List<Product>>(res2);
+            }
+            listboxProduct.ItemsSource = products;
+        }
+
     }
 }

@@ -65,9 +65,28 @@ namespace ZakladkiAdoNet
                     }
                
                     WebResponse response = request.GetResponse();
-                    MainWindow mw = new MainWindow();
-                    mw.Show();
-                    this.Close();
+                    LoginResultViewModel model2;
+                    using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
+                    {
+                        string json = streamReader.ReadToEnd();
+                        model2 = JsonConvert.DeserializeObject<LoginResultViewModel>(json);
+                    }
+
+                   
+                    if (model2.RoleName == "Manager")
+                    {
+                        MainWindow mw = new MainWindow();
+                        mw.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        Client mw = new Client();
+                        mw.Show();
+                        this.Close();
+                    }
+
+                    ////MessageBox.Show(request.ToString());
                 }
                 catch (Exception ex)
                 {

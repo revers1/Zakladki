@@ -67,7 +67,7 @@ namespace ApiZakladokNet.Controllers
             var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password&&t.Roles_Id==1);
             if (user != null)
             {
-               return this.Ok(user.Id.ToString());
+               return this.Ok(new { UserId = user.Id.ToString(), RoleName = user.RoleOf.Name });
             }
             else if (loxkladmen!=null)
             {
@@ -77,6 +77,25 @@ namespace ApiZakladokNet.Controllers
             {
                 return this.BadRequest();
             }
+        }
+        [HttpPost("blockUser")]
+        public IActionResult BlockUser(int id)
+        {
+            var block = context.Dbuser.FirstOrDefault(t => t.Id == id).IsBlocked = true;
+            context.SaveChanges();
+            return Ok();
+        }
+        [HttpPost("unblockUser")]
+        public IActionResult UnbockUser(int id)
+        {
+            var block = context.Dbuser.FirstOrDefault(t => t.Id == id).IsBlocked = false;
+            context.SaveChanges();
+            return Ok();
+        }
+        [HttpPost("changeRoleOfUser")]
+        public IActionResult ChangeRoleOfUser(int id)
+        {
+
         }
     }
 }
