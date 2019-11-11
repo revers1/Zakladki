@@ -131,5 +131,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZakladkiAdoNet\ZakladkiAdoNet.csproj">
+      <Project>{8D5043DD-EA6D-4DA5-B22E-B6891C85C842}</Project>
+      <Name>ZakladkiAdoNet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

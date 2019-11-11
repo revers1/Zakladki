@@ -72,5 +72,24 @@ namespace ApiZakladokNet.Controllers
                 return this.BadRequest();
             }
         }
+        [HttpPost("blockUser")]
+        public IActionResult BlockUser(int id)
+        {
+            var block = context.Dbuser.FirstOrDefault(t => t.Id == id).IsBlocked = true;
+            context.SaveChanges();
+            return Ok();
+        }
+        [HttpPost("unblockUser")]
+        public IActionResult UnbockUser(int id)
+        {
+            var block = context.Dbuser.FirstOrDefault(t => t.Id == id).IsBlocked = false;
+            context.SaveChanges();
+            return Ok();
+        }
+        [HttpPost("changeRoleOfUser")]
+        public IActionResult ChangeRoleOfUser(int id)
+        {
+
+        }
     }
 }

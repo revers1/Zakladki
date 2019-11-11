@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="List of users"
         Background="#FF222222"
-        Height="450" Width="350"
-        MaxHeight="450" MaxWidth="350"
-        MinHeight="450" MinWidth="350">
+        Height="450" Width="450"
+        MaxHeight="450" MaxWidth="450"
+        MinHeight="450" MinWidth="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,8 +21,10 @@
                   Background="#FF222222" Foreground="#FF222222"
                   FontSize="15" FontFamily="Century Gothic">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Username" Binding="{Binding Username}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Username" Binding="{Binding Username}"/>
+                <DataGridTextColumn IsReadOnly="False" Header="Role" Binding="{Binding Role}"/>
+                <DataGridTextColumn IsReadOnly="False" Header="Is Bloked" Binding="{Binding Is_Bloked}"/>
             </DataGrid.Columns>
         </DataGrid>
 
