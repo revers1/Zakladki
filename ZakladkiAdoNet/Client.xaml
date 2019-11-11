@@ -9,8 +9,12 @@
         Title="Client" Height="450" Width="800"
         MaxHeight="450" MaxWidth="800" Background="Gray">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
         <TextBox x:Name="txtName" 
-                 Grid.Row="0" Grid.Column="0" Margin="5,10,564,361"
+                 Grid.Row="0" Grid.Column="0" Margin="5,10,443,361"
                  Background="#FF222222" Foreground="White"
                  BorderThickness="7" BorderBrush="Orange"
                  FontSize="25" FontFamily="Century Gothic"
@@ -18,7 +22,7 @@
                  VerticalContentAlignment="Center"
                  />
         <TextBox x:Name="txtQuantity" 
-            Grid.Row="0" Grid.Column="0" Margin="5,64,564,307"
+            Grid.Row="0" Grid.Column="0" Margin="5,79,443,292"
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="18" FontFamily="Century Gothic"
@@ -26,27 +30,13 @@
             VerticalContentAlignment="Center"
                  />
         <TextBox x:Name="txtDescription" 
-            Grid.Row="0" Grid.Column="0" Margin="246,10,279,307"
+            Grid.Row="0" Grid.Column="0" Margin="246,10,252,292"
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="20" FontFamily="Century Gothic"
-            Text="Description/Preferences:" 
+            Text="Description/Preferences:" GotFocus="NameOfProduct"
             VerticalContentAlignment="Center"
                  />
-        <Image HorizontalAlignment="Left" Height="228" Margin="5,192,0,0" VerticalAlignment="Top" Width="236"/>
-
-        <m:Map x:Name="Map" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Margin="246,192,0,0"/>
-        
-        <TextBox x:Name="txtPrice" 
-            Grid.Row="0" Grid.Column="0" Margin="5,118,564,253"
-            Background="#FF222222" Foreground="White"
-            BorderThickness="7" BorderBrush="Orange"
-            FontSize="25" FontFamily="Century Gothic"
-            Text="Price:" 
-            VerticalContentAlignment="Center"
-                 />
-        <Button Name="buttonZakazat" Content="Zakazat'" HorizontalAlignment="Left" Margin="246,118,0,0" VerticalAlignment="Top" Width="130" Height="49"/>
-        <Button Name="buttonbuy" Content="Buy" HorizontalAlignment="Left" Margin="381,118,0,0" VerticalAlignment="Top" Width="132" Height="49"/>
-
+        <Image HorizontalAlignment="Left" Height="232" Margin="5,178,0,0" VerticalAlignment="Top" Width="241"/>
     </Grid>
 </Window>
