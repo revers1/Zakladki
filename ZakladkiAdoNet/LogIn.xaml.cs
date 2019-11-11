@@ -68,7 +68,7 @@ namespace ZakladkiAdoNet
                     LoginResultViewModel model2;
                     using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
                     {
-                         string json = streamReader.ReadToEnd();
+                        string json = streamReader.ReadToEnd();
                         model2 = JsonConvert.DeserializeObject<LoginResultViewModel>(json);
                     }
 
