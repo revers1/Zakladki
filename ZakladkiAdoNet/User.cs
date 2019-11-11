@@ -13,5 +13,6 @@ namespace ZakladkiAdoNet
         public string Password { get; set; }
         public int Roles_Id { get; set; }
 
+        public bool IsBlocked { get; set; }
     }
 }

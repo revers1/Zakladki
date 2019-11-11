@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZakladkiAdoNet;
 
 namespace AdminAdoNet
 {
@@ -46,17 +47,57 @@ namespace AdminAdoNet
 
         private void BlockUser(object sender, RoutedEventArgs e)
         {
+            List<UserModel> list = new List<UserModel>();
 
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/blockUser/"+$"{((UserModel)dgOfUsers.SelectedItems[0]).Id}");
+            request.Method = "POST";
+            request.ContentType = "application/json";
+
+            WebResponse response = request.GetResponse();
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                string json = reader.ReadToEnd();
+                var users = JsonConvert.DeserializeObject<List<UserModel>>(json);
+                list = users;
+            }
+
+            dgOfUsers.ItemsSource = list;
         }
 
         private void UblockUser(object sender, RoutedEventArgs e)
         {
+            List<UserModel> list = new List<UserModel>();
 
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/unblockUser/" + $"{((UserModel)dgOfUsers.SelectedItems[0]).Id}");
+            request.Method = "POST";
+            request.ContentType = "application/json";
+
+            WebResponse response = request.GetResponse();
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                string json = reader.ReadToEnd();
+                var users = JsonConvert.DeserializeObject<List<UserModel>>(json);
+                list = users;
+            }
+
+            dgOfUsers.ItemsSource = list;
         }
 
         private void ChangeRoleOfUser(object sender, RoutedEventArgs e)
         {
+            List<UserModel> models = new List<UserModel>();
 
+            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/changeRoleOfUser/");
+            request.Method = "POST";
+            request.ContentType = "application/json";
+
+            WebResponse response = request.GetResponse();
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            {
+                string json = reader.ReadToEnd();
+                var users = JsonConvert.DeserializeObject<List<UserModel>>(json);
+                models = users;
+            }
         }
     }
 }
