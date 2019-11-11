@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZakladkiAdoNet.Config;
 using ZakladkiAdoNet.Models;
 
 namespace ZakladkiAdoNet
@@ -50,7 +51,7 @@ namespace ZakladkiAdoNet
                 try
                 {
 
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:56646/api/user/loginUser");
+                    HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/user/loginUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
