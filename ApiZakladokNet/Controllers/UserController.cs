@@ -62,10 +62,16 @@ namespace ApiZakladokNet.Controllers
         [HttpPost("loginUser")]
         public IActionResult CheckLogin([FromBody]LogInViewModel model)
         {
-            var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password);
+
+            var loxkladmen= context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password && t.Roles_Id == 2);
+            var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password&&t.Roles_Id==1);
             if (user != null)
             {
                return this.Ok(user.Id.ToString());
+            }
+            else if (loxkladmen!=null)
+            {
+                return this.Ok(loxkladmen.Id.ToString());
             }
             else
             {

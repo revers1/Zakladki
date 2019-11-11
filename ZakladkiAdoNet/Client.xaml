@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZakladkiAdoNet"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
         Title="Client" Height="450" Width="800"
         MaxHeight="450" MaxWidth="800" Background="Gray">
@@ -13,25 +14,39 @@
                  Background="#FF222222" Foreground="White"
                  BorderThickness="7" BorderBrush="Orange"
                  FontSize="25" FontFamily="Century Gothic"
-                 Text="Name:" GotFocus="NameOfProduct"
+                 Text="Name:" 
                  VerticalContentAlignment="Center"
                  />
         <TextBox x:Name="txtQuantity" 
-            Grid.Row="0" Grid.Column="0" Margin="5,79,564,292"
+            Grid.Row="0" Grid.Column="0" Margin="5,64,564,307"
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="18" FontFamily="Century Gothic"
-            Text="Quantity gram/piece:" GotFocus="NameOfProduct"
+            Text="Quantity gram/piece:" 
             VerticalContentAlignment="Center"
                  />
         <TextBox x:Name="txtDescription" 
-            Grid.Row="0" Grid.Column="0" Margin="246,10,252,292"
+            Grid.Row="0" Grid.Column="0" Margin="246,10,279,307"
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="20" FontFamily="Century Gothic"
-            Text="Description/Preferences:" GotFocus="NameOfProduct"
+            Text="Description/Preferences:" 
             VerticalContentAlignment="Center"
                  />
-        <Image HorizontalAlignment="Left" Height="232" Margin="5,178,0,0" VerticalAlignment="Top" Width="241"/>
+        <Image HorizontalAlignment="Left" Height="228" Margin="5,192,0,0" VerticalAlignment="Top" Width="236"/>
+
+        <m:Map x:Name="Map" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Margin="246,192,0,0"/>
+        
+        <TextBox x:Name="txtPrice" 
+            Grid.Row="0" Grid.Column="0" Margin="5,118,564,253"
+            Background="#FF222222" Foreground="White"
+            BorderThickness="7" BorderBrush="Orange"
+            FontSize="25" FontFamily="Century Gothic"
+            Text="Price:" 
+            VerticalContentAlignment="Center"
+                 />
+        <Button Name="buttonZakazat" Content="Zakazat'" HorizontalAlignment="Left" Margin="246,118,0,0" VerticalAlignment="Top" Width="130" Height="49"/>
+        <Button Name="buttonbuy" Content="Buy" HorizontalAlignment="Left" Margin="381,118,0,0" VerticalAlignment="Top" Width="132" Height="49"/>
+
     </Grid>
 </Window>

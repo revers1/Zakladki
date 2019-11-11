@@ -50,7 +50,7 @@ namespace ZakladkiAdoNet
                 try
                 {
 
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/loginUser");
+                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49856/api/user/loginUser");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))
@@ -63,6 +63,8 @@ namespace ZakladkiAdoNet
                         stream.Write(json);
                     }
                     WebResponse response = request.GetResponse();
+                  
+
                     MainWindow mw = new MainWindow();
                     mw.Show();
                     this.Close();
