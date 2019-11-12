@@ -1,4 +1,5 @@
-﻿using AdminAdoNet.Models;
+﻿using AdminAdoNet.Config;
+using AdminAdoNet.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace AdminAdoNet
 
             List<UserModel> list = new List<UserModel>();
 
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/getUser/");
+            HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url }/user/getUser/");
             request.Method = "GET";
             request.ContentType = "application/json";
 
@@ -49,7 +50,7 @@ namespace AdminAdoNet
         {
             List<UserModel> list = new List<UserModel>();
 
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/blockUser/"+$"{((UserModel)dgOfUsers.SelectedItems[0]).Id}");
+            HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url }/user/blockUser/"+$"{((UserModel)dgOfUsers.SelectedItems[0]).Id}");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -68,7 +69,7 @@ namespace AdminAdoNet
         {
             List<UserModel> list = new List<UserModel>();
 
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/unblockUser/" + $"{((UserModel)dgOfUsers.SelectedItems[0]).Id}");
+            HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url }/user/unblockUser/" + $"{((UserModel)dgOfUsers.SelectedItems[0]).Id}");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -83,11 +84,11 @@ namespace AdminAdoNet
             dgOfUsers.ItemsSource = list;
         }
 
-        private void ChangeRoleOfUser(object sender, RoutedEventArgs e)
+        private void DeleteUser(object sender, RoutedEventArgs e)
         {
-            List<UserModel> models = new List<UserModel>();
+            List<UserModel> model = new List<UserModel>();
 
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49808/api/user/changeRoleOfUser/");
+            HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url }/user/deleteUser/");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -96,7 +97,7 @@ namespace AdminAdoNet
             {
                 string json = reader.ReadToEnd();
                 var users = JsonConvert.DeserializeObject<List<UserModel>>(json);
-                models = users;
+                model = users;
             }
         }
     }
