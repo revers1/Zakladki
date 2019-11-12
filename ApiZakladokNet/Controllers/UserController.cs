@@ -88,17 +88,10 @@ namespace ApiZakladokNet.Controllers
             context.SaveChanges();
             return Ok();
         }
-        [HttpDelete("deleteUser/{id}")]
+        [HttpPost("changeRoleOfUser")]
         public IActionResult ChangeRoleOfUser(int id)
         {
-            var user = context.Dbuser.FirstOrDefault(t => t.Id == id);
-            if (user != null)
-            {
-                context.Remove(user);
-                context.SaveChanges();
-                return Ok();
-            }
-            return BadRequest();
+
         }
     }
 }
