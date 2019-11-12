@@ -91,6 +91,7 @@ namespace ZakladkiAdoNet
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
             string json = JsonConvert.SerializeObject(new Product()
             {
+
                 Name = txtName.Text,
                 Price = decimal.Parse(txtPrice.Text),
                 Description = txtComment.Text,

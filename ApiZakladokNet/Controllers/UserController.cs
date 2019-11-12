@@ -88,10 +88,10 @@ namespace ApiZakladokNet.Controllers
             context.SaveChanges();
             return Ok();
         }
-        [HttpPost("changeRoleOfUser")]
-        public IActionResult ChangeRoleOfUser(int id)
-        {
+        //[HttpPost("changeRoleOfUser")]
+        //public IActionResult ChangeRoleOfUser(int id)
+        //{
 
-        }
+        //}
     }
 }

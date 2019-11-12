@@ -35,6 +35,20 @@ namespace ApiZakladokNet.Controllers
             string json = JsonConvert.SerializeObject(product);
             return Content(json, "application/json");
         }
+        [HttpGet("getImage/{id}")]
+        public ContentResult GetImage(int id)
+        {
+            var path = string.Empty;
+            string filename = (context.Dbproduct.FirstOrDefault(t => t.Id == id)).Imagge;
+            using (var file = new FileStream(appEnvironment.WebRootPath + @"/Content/" + filename, FileMode.Open, FileAccess.Read))
+            {
+                var photo = new byte[file.Length];
+                file.Read(photo, 0, (int)file.Length);
+                path = Convert.ToBase64String(photo);
+            }
+            string json = JsonConvert.SerializeObject(path);
+            return Content(json, "application/json");
+        }
 
 
         [HttpPost("addProduct")]
@@ -82,6 +96,14 @@ namespace ApiZakladokNet.Controllers
             string json = JsonConvert.SerializeObject(product);
             return Content(json, "application/json");
         }
+        [HttpGet("getProductClient/{id}")]
+        public ContentResult GetProductClient(int id)
+        {
+            var product = context.Dbproduct.FirstOrDefault(w => w.Id == id);
+            string json = JsonConvert.SerializeObject(product);
+            return Content(json, "application/json");
+        }
+
         [HttpDelete("deleteProduct/{id}")]
         public ContentResult DeleteProduct(int id)
         {
