@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZakladkiAdoNet.Config;
 
 namespace ZakladkiAdoNet
 {
@@ -84,7 +85,7 @@ namespace ZakladkiAdoNet
             Client client = new Client();
            
             byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49421/api/Product/addProduct");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/Product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -145,7 +146,7 @@ namespace ZakladkiAdoNet
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //ButtonRefreshListBox
-            HttpWebRequest request = WebRequest.CreateHttp($"http://localhost:49421/api/zakaz/getZakaz");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/zakaz/getZakaz");
             request.Method = "GET";
             request.ContentType = "application/json";
             var response = request.GetResponse();
@@ -159,7 +160,7 @@ namespace ZakladkiAdoNet
             }
             listboxClient.ItemsSource = zakaz;
             //MessageBox.Show(res);
-            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"http://localhost:49421/api/product/getProductOne/" +$"{Logined.Id}");
+            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" +$"{Logined.Id}");
             request2.Method = "GET";
             request2.ContentType = "application/json";
             var response2 = request2.GetResponse();
