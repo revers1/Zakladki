@@ -65,16 +65,17 @@ namespace ApiZakladokNet.Controllers
         public IActionResult CheckLogin([FromBody]LogInViewModel model)
         {
 
-            var loxkladmen= context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password && t.Roles_Id == 2);
-            var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password&&t.Roles_Id==1);
+            var manager= context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password && t.Roles_Id == 2);
+            
+            var user = context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password);
             if (user != null)
             {
                return this.Ok(new { UserId = user.Id.ToString(), RoleName = user.RoleOf.Name });
             }
-            else if (loxkladmen!=null)
-            {
-                return this.Ok(loxkladmen.Id.ToString());
-            }
+            //else if (manager!=null)
+            //{
+            //    return this.Ok(loxkladmen.Id.ToString());
+            //}
             else
             {
                 return this.BadRequest();
@@ -94,10 +95,6 @@ namespace ApiZakladokNet.Controllers
             context.SaveChanges();
             return Ok();
         }
-        [HttpPost("changeRoleOfUser")]
-        public IActionResult ChangeRoleOfUser(int id)
-        {
-
-        }
+       
     }
 }

@@ -71,6 +71,7 @@ namespace ZakladkiAdoNet
                     {
                         string json = streamReader.ReadToEnd();
                         model2 = JsonConvert.DeserializeObject<LoginResultViewModel>(json);
+                        Logined.Id = model2.UserId;
                     }
 
                    
@@ -82,8 +83,8 @@ namespace ZakladkiAdoNet
                     }
                     else
                     {
-                        Client mw = new Client();
-                        mw.Show();
+                        Client mwv = new Client();
+                        mwv.Show();
                         this.Close();
                     }
 

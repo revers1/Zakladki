@@ -32,7 +32,7 @@ namespace ZakladkiAdoNet
         private void buttonzakazat_Click(object sender, RoutedEventArgs e)
         {
            
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:49421/api/Zakaz/addZakaz");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/Zakaz/addZakaz");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
@@ -40,7 +40,10 @@ namespace ZakladkiAdoNet
             {
                 Name=txtName.Text,
                 Quantity=float.Parse(txtQuantity.Text),
-                Description=txtDescription.Text
+                Description=txtDescription.Text,
+                UserId = Logined.Id
+
+                
             });         
             stream.Write(json);
             stream.Close();
@@ -69,6 +72,7 @@ namespace ZakladkiAdoNet
                 products = JsonConvert.DeserializeObject<List<Product>>(res2);
             }
             listboxProduct.ItemsSource = products;
+           
         }
 
         private void ListboxProduct_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -119,6 +123,32 @@ namespace ZakladkiAdoNet
             txtDescription.Text = products.Description;
             
             }
+        }
+
+        private void txtName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtName.Text = "";
+        }
+
+        private void txtQuantity_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtQuantity.Text = "";
+        }
+
+        private void txtDescription_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtDescription.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            txtName.Text = "";
+            txtDescription.Text = "";
+            txtQuantity.Text = "";
+            Imagebox.Source = null;
+            Map.Children.Clear();
+            listboxProduct.SelectedItem = null;
+           
         }
     }
 }

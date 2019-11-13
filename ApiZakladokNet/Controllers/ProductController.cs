@@ -31,9 +31,24 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getProduct")]
         public ContentResult GetProducts()
         {
-            List<Product> product = context.Dbproduct.ToList();
-            string json = JsonConvert.SerializeObject(product);
-            return Content(json, "application/json");
+            List<ProductViewModel> zak = new List<ProductViewModel>();
+            foreach (var item in context.Dbproduct.ToList())
+            {
+                zak.Add(new ProductViewModel()
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Quantity = item.Quantity,
+                    Price = item.Price,
+                    Imagge=item.Imagge,
+                    CoordX=item.CoordX,
+                    CoordY =item.CoordY,
+                    User_Id=item.User_Id
+                });
+            }
+                string json = JsonConvert.SerializeObject(zak);
+                return Content(json, "application/json");
         }
         [HttpGet("getImage/{id}")]
         public ContentResult GetImage(int id)

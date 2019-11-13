@@ -99,18 +99,20 @@ namespace ZakladkiAdoNet
                 Quantity = float.Parse(txtQuantity.Text),
                 CoordX = txtcoordx.Text,
                 CoordY = txtcoordy.Text,
-                User_Id=((Product)listboxProduct.SelectedItems[0]).User_Id
+                User_Id=((ZakazClient)(listboxClient.SelectedItems[0])).UserId
                 
                
 
         });
-            ClearAllFields();
             stream.Write(json);
             stream.Close();
 
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
-       
+            ClearAllFields();
+            
+
+
 
 
         }
@@ -118,12 +120,26 @@ namespace ZakladkiAdoNet
         private void Map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             MapLayer maplayer = new MapLayer();
-            Pushpin pin= new Pushpin();
+            Pushpin pin=new Pushpin();
             pin.Location = Map.Center;
-            txtcoordx.Text = pin.Location.Latitude.ToString();
-            txtcoordy.Text = pin.Location.Longitude.ToString();
+
             maplayer.Children.Add(pin);
             Map.Children.Add(maplayer);
+
+
+            //Point mousePosition = e.GetPosition(this);
+            //Location pinLocation = Map.ViewportPointToLocation(mousePosition);
+
+            //pin = new Pushpin();
+            //pin.Location = pinLocation;
+
+            txtcoordx.Text = pin.Location.Latitude.ToString();
+            txtcoordy.Text = pin.Location.Longitude.ToString();
+
+            //Map.Children.Add(pin);
+            //MapLayer maplayer2 = new MapLayer();
+
+            //Map.Children.Add(maplayer2);
             Map.IsEnabled = false;
 
         }
@@ -147,21 +163,27 @@ namespace ZakladkiAdoNet
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //ButtonRefreshListBox
-            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/zakaz/getZakaz");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/Zakaz/getZakaz");
             request.Method = "GET";
             request.ContentType = "application/json";
             var response = request.GetResponse();
             string res = "";
-          List<ZakazClient> zakaz;
+            List<ZakazClient> zakaz;
             using (Stream stream = response.GetResponseStream())
             {
                 StreamReader reader = new StreamReader(stream);
                 res += reader.ReadToEnd();
-                 zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
+                zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
             }
             listboxClient.ItemsSource = zakaz;
+
+
+
+
+
+
             //MessageBox.Show(res);
-            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" +$"{Logined.Id}");
+            HttpWebRequest request2 = WebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" + $"{Logined.Id}");
             request2.Method = "GET";
             request2.ContentType = "application/json";
             var response2 = request2.GetResponse();

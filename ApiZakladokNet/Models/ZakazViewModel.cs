@@ -8,10 +8,12 @@ namespace ApiZakladokNet.Models
 {
     public class ZakazViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-   
-        public float Quantity { get; set; }
 
         public string Description { get; set; }
+
+        public float Quantity { get; set; }
+        public int UserId { get; set; }
     }
 }
