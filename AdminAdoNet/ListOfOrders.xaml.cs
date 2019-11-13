@@ -1,4 +1,5 @@
-﻿using AdminAdoNet.Models;
+﻿using AdminAdoNet.Config;
+using AdminAdoNet.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace AdminAdoNet
             InitializeComponent();
             List<OrderModel> list = new List<OrderModel>();
 
-            HttpWebRequest request = WebRequest.CreateHttp("http://localhost:51295/api/zakazclient/getZakaz/");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/zakazclient/getZakaz/");
             request.Method = "GET";
             request.ContentType = "application/json";
 

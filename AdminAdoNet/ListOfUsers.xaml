@@ -54,12 +54,12 @@
                            TextAlignment="Center"/>
             </Button>
 
-            <Button x:Name="btnChangeRole" Click="ChangeRoleOfUser"
+            <Button x:Name="btnChangeRole" Click="DeleteUser"
                     Margin="5 30" Grid.Row="2"
                     Background="#FF222222" Foreground="White"
                     BorderBrush="Orange" BorderThickness="3">
                 <TextBlock FontSize="20" FontFamily="Century Gothic"
-                           Text="Change role of User" TextWrapping="Wrap"
+                           Text="Delete User" TextWrapping="Wrap"
                            TextAlignment="Center"/>
             </Button>
         </Grid>

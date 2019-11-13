@@ -1,4 +1,5 @@
-﻿using AdminAdoNet.Models;
+﻿using AdminAdoNet.Config;
+using AdminAdoNet.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ namespace AdminAdoNet
             {
                 try
                 {
-                    HttpWebRequest request = WebRequest.CreateHttp("http://localhost:51295/api/boss/addBoss");
+                    HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url }/boss/addBoss");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))

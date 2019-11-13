@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Config\Api.cs" />
     <Compile Include="ListOfUsers.xaml.cs">
       <DependentUpon>ListOfUsers.xaml</DependentUpon>
     </Compile>
