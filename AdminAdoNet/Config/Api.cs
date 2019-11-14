@@ -8,6 +8,6 @@ namespace AdminAdoNet.Config
 {
     class Api
     {
-        public static string Url = "http://localhost:49329/api";
+        public static string Url = "http://localhost:49856/api";
     }
 }

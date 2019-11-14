@@ -97,8 +97,9 @@ namespace ApiZakladokNet.Controllers
                 {
                     // Шлях до нашої папки з проектом
                     string directory = _env.ContentRootPath;
-                    string path = Path.Combine(directory, "Content", _configuration["ProductImages"]);
-                    nameOfImage = Path.GetRandomFileName() + ".jpg";
+                  string path = Path.Combine(directory, "Content", _configuration["ProductImages"]);
+                    //string path2= $"{directory}\\Content\\ProductImages";
+                    nameOfImage = /*Path.GetRandomFileName() + ".jpg"*/model.Imagge;
                     string pathToFile = Path.Combine(path, nameOfImage);
 
                     byte[] imageBytes = Convert.FromBase64String(model.Imagge);
@@ -107,6 +108,7 @@ namespace ApiZakladokNet.Controllers
                         var image = Image.FromStream(ms);
                         image.Save(pathToFile, ImageFormat.Jpeg);
                     }
+
                 }
 
                 Product product = new Product()
@@ -133,8 +135,28 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getProductOne/{id}")]
         public ContentResult GetProductsOne(int id)
         {
-            var product = context.Dbproduct.Where(w=>w.User_Id==id);
-            string json = JsonConvert.SerializeObject(product);
+            List<Product> producta = context.Dbproduct.ToList();
+            List<ProductViewModel> zak = new List<ProductViewModel>();
+            foreach (var item in producta)
+            {
+                if (item.User_Id==id)
+                {
+                    zak.Add(new ProductViewModel()
+                    {
+                        Id = item.Id,
+                        Name = item.Name,
+                        Description = item.Description,
+                        Quantity = item.Quantity,
+                        Price = item.Price,
+                        Imagge = item.Imagge,
+                        CoordX = item.CoordX,
+                        CoordY = item.CoordY,
+                        User_Id = item.User_Id
+                    });
+                }
+            }
+            //var product = context.Dbproduct.Where(w=>w.User_Id==id);
+            string json = JsonConvert.SerializeObject(zak);
             return Content(json, "application/json");
         }
         [HttpGet("getProductClient/{id}")]

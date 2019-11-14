@@ -82,40 +82,90 @@ namespace ZakladkiAdoNet
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client();
-           
-            byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/Product/addProduct");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
+            string image;
+            var img = System.Drawing.Image.FromFile(textboxphoto.Text);
+            byte[] bytes;
+            using (MemoryStream stream2 = new MemoryStream())
+            {
+                img.Save(stream2, img.RawFormat);
+                bytes = stream2.ToArray();
+            }
+            image = Convert.ToBase64String(bytes);
             string json = JsonConvert.SerializeObject(new Product()
             {
-
                 Name = txtName.Text,
                 Price = decimal.Parse(txtPrice.Text),
                 Description = txtComment.Text,
-                Imagge = Convert.ToBase64String(imgbyte),
+                Imagge = image,
                 Quantity = float.Parse(txtQuantity.Text),
                 CoordX = txtcoordx.Text,
                 CoordY = txtcoordy.Text,
-                User_Id=((ZakazClient)(listboxClient.SelectedItems[0])).UserId
-                
-               
-
-        });
+                User_Id = ((ZakazClient)(listboxClient.SelectedItems[0])).UserId
+            });
             stream.Write(json);
             stream.Close();
-
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
+
             ClearAllFields();
-            
-
-
-
-
         }
+        //    Client client = new Client();
+
+        //    byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
+        //    StreamWriter stream = new StreamWriter(request.GetRequestStream());
+        //    string json = JsonConvert.SerializeObject(new Product()
+        //    {
+
+        //        Name = txtName.Text,
+        //        Price = decimal.Parse(txtPrice.Text),
+        //        Description = txtComment.Text,
+        //        Imagge = Convert.ToBase64String(imgbyte),
+        //        Quantity = float.Parse(txtQuantity.Text),
+        //        CoordX = txtcoordx.Text,
+        //        CoordY = txtcoordy.Text,
+        //        User_Id=((ZakazClient)(listboxClient.SelectedItems[0])).UserId
+
+
+
+        //});
+        //    stream.Write(json);
+        //    stream.Close();
+
+        //    WebResponse response = request.GetResponse();
+        //    MessageBox.Show("added");
+
+
+        //using (StreamWriter writer = new StreamWriter(request.GetRequestStream()))
+        //{
+
+        //Product model = new Product()
+        //{
+        //    Name = txtName.Text,
+        //    Price = decimal.Parse(txtPrice.Text),
+        //    Description = txtComment.Text,
+        //    Imagge = image,
+        //    Quantity = float.Parse(txtQuantity.Text),
+        //    CoordX = txtcoordx.Text,
+        //    CoordY = txtcoordy.Text,
+        //    User_Id = ((ZakazClient)(listboxClient.SelectedItems[0])).UserId
+        //};
+        //writer.Write(JsonConvert.SerializeObject(model));
+
+
+
+
+        //});
+
+
+
+
+
+
+
 
         private void Map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

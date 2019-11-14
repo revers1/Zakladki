@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Content\ProductImages\" />
     <Folder Include="Entity\Identity\" />
     <Folder Include="wwwroot\Content\ProductImages\" />
   </ItemGroup>
