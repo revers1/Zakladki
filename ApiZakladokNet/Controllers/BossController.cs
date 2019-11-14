@@ -52,7 +52,7 @@ namespace ApiZakladokNet.Controllers
         [HttpPost("loginBoss")]
         public IActionResult CheckLogin([FromBody]LogInViewModel model)
         {
-            var boss = _context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password /*&& t.RoleOf.Name=="Boss"*/);
+            var boss = _context.Bosses.FirstOrDefault(t => t.Username == model.Login && t.Password == model.Password /*&& t.RoleOf.Name=="Boss"*/);
             if (boss != null)
             {
                 return Ok(boss.Id.ToString());

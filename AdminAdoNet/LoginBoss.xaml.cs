@@ -62,7 +62,7 @@ namespace AdminAdoNet
             {
                 try
                 {
-                    HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url }/boss/loginBoss");
+                    HttpWebRequest request = WebRequest.CreateHttp($"{ Api.Url1 }/boss/loginBoss");
                     request.Method = "POST";
                     request.ContentType = "application/json";
                     using (StreamWriter stream = new StreamWriter(request.GetRequestStream()))

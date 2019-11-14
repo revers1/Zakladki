@@ -37,12 +37,12 @@ namespace ZakladkiAdoNet
 
         private void GotFocusPassword(object sender, RoutedEventArgs e)
         {
-            txtPassword.Text = "";
+            txtPassword.Password = "";
         }
 
         private void LogInProgramm(object sender, RoutedEventArgs e)
         {
-            if (txtPassword.Text == "" || txtUsername.Text == "")
+            if (txtPassword.Password == "" || txtUsername.Text == "")
             {
                 MessageBox.Show("Please fill in the empty fields!");
             }
@@ -59,7 +59,7 @@ namespace ZakladkiAdoNet
                         string json = JsonConvert.SerializeObject(new LogInModel()
                         {
                             Login = txtUsername.Text,
-                            Password = txtPassword.Text
+                            Password = txtPassword.Password
                         });
                         stream.Write(json);
                         
