@@ -53,14 +53,14 @@
                  VerticalContentAlignment="Center"
                  />
 
-        <TextBox x:Name="txtPassword"
-                 Grid.Row="2" Grid.Column="1" Margin="5 57"
-                 Background="#FF222222" Foreground="White"
-                 BorderThickness="5" BorderBrush="Cyan"
-                 FontFamily="Century Gothic" FontSize="20"
-                 GotFocus="GotFocusPassword" Text="Enter your password:"
-                 VerticalContentAlignment="Center"
-                 />
+        <PasswordBox x:Name="txtPassword"
+                     Grid.Row="2" Grid.Column="1" Margin="5 57"
+                     Background="#FF222222" Foreground="White"
+                     BorderThickness="5" BorderBrush="Cyan"
+                     FontFamily="Century Gothic" FontSize="20"
+                     GotFocus="GotFocusPassword"
+                     VerticalContentAlignment="Center"
+                     />
 
         <!--Buttons-->
         <Button x:Name="btnLogIn" Click="LogInProgramm"

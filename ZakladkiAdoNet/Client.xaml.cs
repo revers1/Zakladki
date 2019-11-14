@@ -51,11 +51,29 @@ namespace ZakladkiAdoNet
 
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
+            
         }
 
         private void Buttonbuy_Click(object sender, RoutedEventArgs e)
         {
-           
+
+
+            HttpWebRequest request2 = WebRequest.CreateHttp($"{Api.Url}/product/deleteProduct/" + $"{((Product)listboxProduct.SelectedItems[0]).Id}");
+            request2.Method = "DELETE";
+            request2.ContentType = "application/json";
+            var response2 = request2.GetResponse();
+            string res2 = "";
+            List<Product> products = new List<Product>() { };
+            using (Stream stream = response2.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream);
+                res2 += reader.ReadToEnd();
+                MessageBox.Show(res2);
+                
+
+            }
+            WebResponse response = request2.GetResponse();
+            Button_Click_1(null,null);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
