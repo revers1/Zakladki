@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiZakladokNet.Entity;
+using ApiZakladokNet.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,13 +28,25 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getZakaz")]
         public ContentResult GetZakaz()
         {
-            List<ZakazClient> zakaz = context.Dbzakaz.ToList();
-            string json = JsonConvert.SerializeObject(zakaz);
+
+            List<ZakazViewModel> zak = new List<ZakazViewModel>() ;
+            foreach (var item in context.Dbzakaz.ToList())
+            {
+                zak.Add(new ZakazViewModel()
+                {
+                    Id=item.Id,
+                    Name=item.Name,
+                    Description=item.Description,
+                    Quantity=item.Quantity,
+                    UserId =item.UserId
+                });
+            }
+            string json = JsonConvert.SerializeObject(zak);
             return Content(json, "application/json");
         }
 
         [HttpPost("addZakaz")]
-        public ContentResult AddZakaz([FromBody]ZakazClient model)
+        public ContentResult AddZakaz([FromBody]ZakazViewModel model)
         {
             try
             {

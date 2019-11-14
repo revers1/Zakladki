@@ -8,6 +8,8 @@ namespace ZakladkiAdoNet
 {
    public class Product
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public decimal Price { get; set; }
@@ -22,5 +24,11 @@ namespace ZakladkiAdoNet
 
         public string CoordY { get; set; }
         public int User_Id { get; set; }
+
+        public override string ToString()
+        {
+
+            return $"Name: {Name}\t" + $"Quantity: {Quantity}\t" + $"Description: {Description}. Price - {Price}";
+        }
     }
 }

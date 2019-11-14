@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiZakladokNet.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20191107180729_Little change of user")]
-    partial class Littlechangeofuser
+    [Migration("20191113184331_change column")]
+    partial class changecolumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -47,8 +47,7 @@ namespace ApiZakladokNet.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("User_Id")
-                        .IsUnique();
+                    b.HasIndex("User_Id");
 
                     b.ToTable("Product");
                 });
@@ -115,8 +114,8 @@ namespace ApiZakladokNet.Migrations
             modelBuilder.Entity("ApiZakladokNet.Entity.Product", b =>
                 {
                     b.HasOne("ApiZakladokNet.Entity.User", "UserOf")
-                        .WithOne("ProductOf")
-                        .HasForeignKey("ApiZakladokNet.Entity.Product", "User_Id")
+                        .WithMany("ProductOf")
+                        .HasForeignKey("User_Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

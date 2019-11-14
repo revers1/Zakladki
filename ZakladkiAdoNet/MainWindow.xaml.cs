@@ -82,47 +82,114 @@ namespace ZakladkiAdoNet
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client();
-           
-            byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
-            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/Product/addProduct");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/product/addProduct");
             request.Method = "POST";
             request.ContentType = "application/json";
             StreamWriter stream = new StreamWriter(request.GetRequestStream());
+            string image;
+            var img = System.Drawing.Image.FromFile(textboxphoto.Text);
+            byte[] bytes;
+            using (MemoryStream stream2 = new MemoryStream())
+            {
+                img.Save(stream2, img.RawFormat);
+                bytes = stream2.ToArray();
+            }
+            image = Convert.ToBase64String(bytes);
             string json = JsonConvert.SerializeObject(new Product()
             {
                 Name = txtName.Text,
                 Price = decimal.Parse(txtPrice.Text),
                 Description = txtComment.Text,
-                Imagge = Convert.ToBase64String(imgbyte),
+                Imagge = image,
                 Quantity = float.Parse(txtQuantity.Text),
                 CoordX = txtcoordx.Text,
                 CoordY = txtcoordy.Text,
-                User_Id=((Product)listboxProduct.SelectedItems[0]).User_Id
-                
-               
-
-        });
-            ClearAllFields();
+                User_Id = ((ZakazClient)(listboxClient.SelectedItems[0])).UserId
+            });
             stream.Write(json);
             stream.Close();
-
             WebResponse response = request.GetResponse();
             MessageBox.Show("added");
-       
 
-
+            ClearAllFields();
         }
+        //    Client client = new Client();
+
+        //    byte[] imgbyte = File.ReadAllBytes(textboxphoto.Text);
+        //    StreamWriter stream = new StreamWriter(request.GetRequestStream());
+        //    string json = JsonConvert.SerializeObject(new Product()
+        //    {
+
+        //        Name = txtName.Text,
+        //        Price = decimal.Parse(txtPrice.Text),
+        //        Description = txtComment.Text,
+        //        Imagge = Convert.ToBase64String(imgbyte),
+        //        Quantity = float.Parse(txtQuantity.Text),
+        //        CoordX = txtcoordx.Text,
+        //        CoordY = txtcoordy.Text,
+        //        User_Id=((ZakazClient)(listboxClient.SelectedItems[0])).UserId
+
+
+
+        //});
+        //    stream.Write(json);
+        //    stream.Close();
+
+        //    WebResponse response = request.GetResponse();
+        //    MessageBox.Show("added");
+
+
+        //using (StreamWriter writer = new StreamWriter(request.GetRequestStream()))
+        //{
+
+        //Product model = new Product()
+        //{
+        //    Name = txtName.Text,
+        //    Price = decimal.Parse(txtPrice.Text),
+        //    Description = txtComment.Text,
+        //    Imagge = image,
+        //    Quantity = float.Parse(txtQuantity.Text),
+        //    CoordX = txtcoordx.Text,
+        //    CoordY = txtcoordy.Text,
+        //    User_Id = ((ZakazClient)(listboxClient.SelectedItems[0])).UserId
+        //};
+        //writer.Write(JsonConvert.SerializeObject(model));
+
+
+
+
+        //});
+
+
+
+
+
+
+
 
         private void Map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             MapLayer maplayer = new MapLayer();
-            Pushpin pin= new Pushpin();
+            Pushpin pin=new Pushpin();
             pin.Location = Map.Center;
-            txtcoordx.Text = pin.Location.Latitude.ToString();
-            txtcoordy.Text = pin.Location.Longitude.ToString();
+
             maplayer.Children.Add(pin);
             Map.Children.Add(maplayer);
+
+
+            //Point mousePosition = e.GetPosition(this);
+            //Location pinLocation = Map.ViewportPointToLocation(mousePosition);
+
+            //pin = new Pushpin();
+            //pin.Location = pinLocation;
+
+            txtcoordx.Text = pin.Location.Latitude.ToString();
+            txtcoordy.Text = pin.Location.Longitude.ToString();
+
+            //Map.Children.Add(pin);
+            //MapLayer maplayer2 = new MapLayer();
+
+            //Map.Children.Add(maplayer2);
             Map.IsEnabled = false;
 
         }
@@ -141,26 +208,34 @@ namespace ZakladkiAdoNet
             txtcoordx.Text = "";
             txtcoordy.Text = "";
             Map.IsEnabled = true;
+            Map.Children.Clear();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //ButtonRefreshListBox
-            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/zakaz/getZakaz");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/Zakaz/getZakaz");
             request.Method = "GET";
             request.ContentType = "application/json";
             var response = request.GetResponse();
             string res = "";
-          List<ZakazClient> zakaz;
+            List<ZakazClient> zakaz;
             using (Stream stream = response.GetResponseStream())
             {
                 StreamReader reader = new StreamReader(stream);
                 res += reader.ReadToEnd();
-                 zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
+                zakaz = JsonConvert.DeserializeObject<List<ZakazClient>>(res);
             }
             listboxClient.ItemsSource = zakaz;
+
+
+
+
+
+
             //MessageBox.Show(res);
-            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" +$"{Logined.Id}");
+            HttpWebRequest request2 = WebRequest.CreateHttp($"{Api.Url}/product/getProduct");
             request2.Method = "GET";
             request2.ContentType = "application/json";
             var response2 = request2.GetResponse();

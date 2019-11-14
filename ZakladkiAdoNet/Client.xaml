@@ -20,14 +20,16 @@
                  FontSize="25" FontFamily="Century Gothic"
                  Text="Name:" 
                  VerticalContentAlignment="Center"
+                 GotFocus="txtName_GotFocus"
                  />
         <TextBox x:Name="txtQuantity" 
             Grid.Row="0" Grid.Column="0" Margin="5,79,443,292"
             Background="#FF222222" Foreground="White"
             BorderThickness="7" BorderBrush="Orange"
             FontSize="18" FontFamily="Century Gothic"
-            Text="Quantity gram/piece:" 
+            Text="Quantity:" 
             VerticalContentAlignment="Center"
+                 GotFocus="txtQuantity_GotFocus"
                  />
         <TextBox x:Name="txtDescription" 
             Grid.Row="0" Grid.Column="0" Margin="246,10,131,292"
@@ -36,12 +38,16 @@
             FontSize="20" FontFamily="Century Gothic"
             Text="Preferences street:"
             VerticalContentAlignment="Center"
+                 GotFocus="txtDescription_GotFocus"
                  />
-        <Image HorizontalAlignment="Left" Height="267" Margin="5,143,0,0" VerticalAlignment="Top" Width="241"/>
-        <Button Name="buttonzakazat" BorderBrush="Orange" BorderThickness="3"  Background="Black" Foreground="White" Margin="558,10,13,374" Click="buttonzakazat_Click">Заказать</Button>
-        <Button  Name="buttonbuy" BorderBrush="Orange" BorderThickness="3" Background="Black" Foreground="White" Margin="11,79,10,305" Click="Buttonbuy_Click" Grid.Column="1">Купить</Button>
+        <Image Name="Imagebox" HorizontalAlignment="Left" Height="223" Margin="5,187,0,0" VerticalAlignment="Top" Width="241"/>
+        <Button Name="buttonzakazat" BorderBrush="Orange" BorderThickness="3"  Background="Black" Foreground="White" Margin="440,143,131,241" Click="buttonzakazat_Click">Заказать</Button>
+        <Button  Name="buttonbuy" BorderBrush="Orange" BorderThickness="3" Background="Black" Foreground="White" Margin="11,143,10,241" Click="Buttonbuy_Click" Grid.Column="1">Найдено</Button>
+        <Button Background="#FF222222" BorderBrush="Green" BorderThickness="3" Foreground="White" Content="@" HorizontalAlignment="Left" Margin="628,144,0,0" VerticalAlignment="Top" Width="43" Click="Button_Click_1"/>
+        <ListBox Name="listboxProduct"  BorderBrush="Orange" Foreground="White" FontSize="15" BorderThickness="4" Background="#FF222222" HorizontalAlignment="Left" Height="118" Margin="545,10,0,0" VerticalAlignment="Top" Width="237" Grid.ColumnSpan="2" PreviewMouseDoubleClick="ListboxProduct_PreviewMouseDoubleClick"/>
 
         <m:Map x:Name="Map" IsEnabled="False" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Margin="251,187,0,10" Grid.ColumnSpan="2" />
+        <Button Background="#FF222222" BorderBrush="Red" BorderThickness="3" Foreground="White" Content="Clear" HorizontalAlignment="Left" Margin="5,160,0,0" VerticalAlignment="Top" Width="43" Click="Button_Click"/>
 
     </Grid>
 </Window>

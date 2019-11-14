@@ -22,8 +22,9 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="234*"/>
+            <ColumnDefinition Width="745*"/>
+            <ColumnDefinition Width="37*"/>
         </Grid.ColumnDefinitions>
 
         <!--TextBoxes-->
@@ -45,7 +46,7 @@
                  VerticalContentAlignment="Center"
                  />
 
-        <TextBox x:Name="txtComment" Grid.Column="1" Margin="10,10,506,0"
+        <TextBox x:Name="txtComment" Grid.Column="1" Margin="10,10,469.459,0"
                  Background="#FF222222" Foreground="White"
                  BorderThickness="7" BorderBrush="Orange"
                  FontSize="25" FontFamily="Century Gothic"
@@ -61,21 +62,21 @@
             Text="Quantity:" GotFocus='txtQuantity_GotFocus'
             VerticalContentAlignment="Center"
             />
-        <m:Map x:Name="Map" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="107,20,0,0" MouseDoubleClick="Map_MouseDoubleClick"/>
+        <m:Map x:Name="Map" CredentialsProvider="7ZgcAMFMB862ztR0acCA~pLQ8hVbwNHPWR9hpWMU5BA~An3T7R4EpvMFJ0ei9a3S5a1_5DibW6Qz6sTrgZHWC2VDIa0x_41jjZpUMla4IGw4" ZoomLevel="13" Center="50.620285, 26.244479" Mode="Road" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="107,20,0,0" MouseDoubleClick="Map_MouseDoubleClick" Grid.ColumnSpan="2"/>
 
 
         <!--ImageBox-->
         <Image x:Name="PictureOfProductLocation" 
-               Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Margin="10 20 695 20" Grid.ColumnSpan="2"/>
+               Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Margin="10,20,658.459,20" Grid.ColumnSpan="2"/>
 
         <!--WebBrowser-->
 
         <Button BorderBrush="Orange"  BorderThickness="3" Background="Gray" Foreground="White" Content="Photo" HorizontalAlignment="Left" Margin="10,76,0,0" Grid.Row="2" VerticalAlignment="Top" Width="103" Height="32" Click="Button_Click"/>
         <Button  Content="Добавить" BorderBrush="Orange" BorderThickness="3" Foreground="White" Name="Button_Add" Background="Black" Grid.Column="1" HorizontalAlignment="Left" Margin="107,66,0,0" Grid.Row="2" VerticalAlignment="Top" Width="169" Height="32" Click="Button_Add_Click" />
         <TextBox HorizontalAlignment="Left" Name="textboxphoto" Height="23" Margin="137,85,0,0" Grid.Row="2" TextWrapping="Wrap" Visibility="Hidden" Text="" VerticalAlignment="Top" Width="97"/>
-        <TextBox x:Name="txtcoordx" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="633,25,0,0" Grid.Row="2" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtcoordy" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="633,60,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="120"/>
-        <ListBox Name="listboxClient" BorderBrush="Orange" Foreground="White" FontSize="15" BorderThickness="4" Background="#FF222222" Grid.Column="1" HorizontalAlignment="Left" Height="143" Margin="346,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="426">
+        <TextBox x:Name="txtcoordx" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="633,25,0,0" Grid.Row="2" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtcoordy" Background="Gray" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="633,60,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ListBox Name="listboxClient" BorderBrush="Orange" Foreground="White" FontSize="15" BorderThickness="4" Background="#FF222222" Grid.Column="1" HorizontalAlignment="Left" Height="143" Margin="346,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="426" Grid.ColumnSpan="2">
         </ListBox>
         <ListBox Name="listboxProduct" BorderBrush="Orange" Foreground="White" FontSize="15" BorderThickness="4" Background="#FF222222" Grid.Column="1" HorizontalAlignment="Left" Height="98" Margin="346,10,0,0" VerticalAlignment="Top" Width="282" Grid.Row="2"/>
 
