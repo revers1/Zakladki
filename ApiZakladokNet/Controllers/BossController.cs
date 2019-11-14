@@ -23,7 +23,7 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getBoss")]
         public ContentResult GetBoss()
         {
-            List<User> bosses = _context.Dbuser.ToList();
+            List<Boss> bosses = _context.Bosses.ToList();
             string json = JsonConvert.SerializeObject(bosses);
             return Content(json, "application/json");
         }
@@ -33,13 +33,13 @@ namespace ApiZakladokNet.Controllers
         {
             try
             {
-                User user = new User()
+                Boss boss = new Boss()
                 {
-                    Login = model.UserName,
+                    Username = model.UserName,
                     Password = model.Password
                 };
 
-                _context.Dbuser.Add(user);
+                _context.Bosses.Add(boss);
                 _context.SaveChanges();
                 return Content("Boss Added");
             }
@@ -52,7 +52,7 @@ namespace ApiZakladokNet.Controllers
         [HttpPost("loginBoss")]
         public IActionResult CheckLogin([FromBody]LogInViewModel model)
         {
-            var boss = _context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password && t.RoleOf.Name=="Boss");
+            var boss = _context.Dbuser.FirstOrDefault(t => t.Login == model.Login && t.Password == model.Password /*&& t.RoleOf.Name=="Boss"*/);
             if (boss != null)
             {
                 return Ok(boss.Id.ToString());
