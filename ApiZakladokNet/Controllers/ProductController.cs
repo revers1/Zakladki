@@ -175,7 +175,7 @@ namespace ApiZakladokNet.Controllers
                 var product = context.Dbproduct.FirstOrDefault(w => w.Id == id);
                 context.Remove(product);
                 context.SaveChanges();
-                return Content("Product successfuly delted");
+                return Content("Product successfuly deleted");
             }
             catch (Exception ex)
             {
