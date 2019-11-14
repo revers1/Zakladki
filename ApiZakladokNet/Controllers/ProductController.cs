@@ -58,7 +58,7 @@ namespace ApiZakladokNet.Controllers
         public ContentResult GetImage(int id)
         {
 
-            var product = context.Dbproduct.FirstOrDefault(t => t.User_Id == id).Imagge;
+            var product = context.Dbproduct.FirstOrDefault(t => t.Id == id).Imagge;
 
             string json = JsonConvert.SerializeObject(product);
             return Content(json, "application/json");
@@ -75,63 +75,64 @@ namespace ApiZakladokNet.Controllers
         }
 
 
-        [HttpPost("addProduct")]
-        public ContentResult AddProduct([FromBody]ProductViewModel model)
-        {
-            try
-            {
-                //string path = string.Empty;
-                //if (model.Imagge != null)
-                //{
-                //    byte[] imagebyte = Convert.FromBase64String(model.Imagge);
-                //    using (MemoryStream stream = new MemoryStream(imagebyte, 0, imagebyte.Length))
-                //    {
-                //        path = Guid.NewGuid().ToString() + ".jpg";
-                //        Image productImage = Image.FromStream(stream);
-                //        productImage.Save(appEnvironment.WebRootPath + @"/Content/" + path, ImageFormat.Jpeg);
-                //    }
-                //}
+        //[HttpPost("addProduct")]
+        //public ContentResult AddProduct([FromBody]ProductViewModel model)
+        //{
+        //    try
+        //    {
+        //        //string path = string.Empty;
+        //        //if (model.Imagge != null)
+        //        //{
+        //        //    byte[] imagebyte = Convert.FromBase64String(model.Imagge);
+        //        //    using (MemoryStream stream = new MemoryStream(imagebyte, 0, imagebyte.Length))
+        //        //    {
+        //        //        path = Guid.NewGuid().ToString() + ".jpg";
+        //        //        Image productImage = Image.FromStream(stream);
+        //        //        productImage.Save(appEnvironment.WebRootPath + @"/Content/" + path, ImageFormat.Jpeg);
+        //        //    }
+        //        //}
 
-                string nameOfImage = string.Empty;
-                if (model.Imagge != null)
-                {
-                    // Шлях до нашої папки з проектом
-                    string directory = _env.ContentRootPath;
-                  string path = Path.Combine(directory, "Content", _configuration["ProductImages"]);
-                    //string path2= $"{directory}\\Content\\ProductImages";
-                    nameOfImage = /*Path.GetRandomFileName() + ".jpg"*/model.Imagge;
-                    string pathToFile = Path.Combine(path, nameOfImage);
+        //        string nameOfImage = string.Empty;
+        //        if (model.Imagge != null)
+        //        {
+        //            // Шлях до нашої папки з проектом
+        //            string directory = _env.ContentRootPath;
+        //          string path = Path.Combine(directory, "Content", _configuration["ProductImages"]);
+        //            //string path2= $"{directory}\\Content\\ProductImages";
+        //            nameOfImage = /*Path.GetRandomFileName() + ".jpg"*/model.Imagge;
+        //            string pathToFile = Path.Combine(path, nameOfImage);
 
-                    byte[] imageBytes = Convert.FromBase64String(model.Imagge);
-                    using (MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
-                    {
-                        var image = Image.FromStream(ms);
-                        image.Save(pathToFile, ImageFormat.Jpeg);
-                    }
+        //            byte[] imageBytes = Convert.FromBase64String(model.Imagge);
+        //            using (MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+        //            {
+        //                var image = Image.FromStream(ms);
+        //                image.Save(pathToFile, ImageFormat.Jpeg);
+        //            }
 
-                }
+        //        }
 
-                Product product = new Product()
-                {
-                    Name = model.Name,
-                    Price = model.Price,                 
-                     Quantity = model.Quantity,
-                     Description = model.Description,
-                     Imagge=nameOfImage,
-                     CoordX=model.CoordX,
-                     CoordY=model.CoordY,
-                     User_Id=model.User_Id
+        //        Product product = new Product()
+        //        {
+        //            Name = model.Name,
+        //            Price = model.Price,                 
+        //             Quantity = model.Quantity,
+        //             Description = model.Description,
+        //             Imagge=nameOfImage,
+        //             CoordX=model.CoordX,
+        //             CoordY=model.CoordY,
+        //             User_Id=model.User_Id
                      
-                };
-                context.Dbproduct.Add(product);
-                context.SaveChanges();
-                return Content("Product successfuly added");
-            }
-            catch (Exception ex)
-            {
-                return Content("Error " + ex.Message);
-            }
-        }
+        //        };
+        //        context.Dbproduct.Add(product);
+        //        context.SaveChanges();
+        //        return Content("Product successfuly added");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Content("Error " + ex.Message);
+        //    }
+        //}
+
         [HttpGet("getProductOne/{id}")]
         public ContentResult GetProductsOne(int id)
         {
@@ -162,8 +163,26 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getProductClient/{id}")]
         public ContentResult GetProductClient(int id)
         {
-            var product = context.Dbproduct.FirstOrDefault(w => w.Id == id);
-            string json = JsonConvert.SerializeObject(product);
+            List<Product> producta = context.Dbproduct.ToList();
+            ProductViewModel zak=new ProductViewModel() { };
+            foreach (var item in producta)
+            {
+                if (item.Id == id)
+                {
+                    zak.Id = item.Id;
+                    zak.Name = item.Name;
+                    zak.Description = item.Description;
+                    zak.Quantity = item.Quantity;
+                    zak.Price = item.Price;
+                    zak.Imagge = item.Imagge;
+                    zak.CoordX = item.CoordX;
+                    zak.CoordY = item.CoordY;
+                    zak.User_Id = item.User_Id;
+                    break;
+                }
+            }
+            //var product = context.Dbproduct.Where(w=>w.User_Id==id);
+            string json = JsonConvert.SerializeObject(zak);
             return Content(json, "application/json");
         }
 

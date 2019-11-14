@@ -93,7 +93,9 @@ namespace ZakladkiAdoNet
 
                     ////MessageBox.Show(request.ToString());
                 }
+#pragma warning disable CS0168 // The variable 'ex' is declared but never used
                 catch (Exception ex)
+#pragma warning restore CS0168 // The variable 'ex' is declared but never used
                 {
                     MessageBox.Show("Try again!", "Fail", MessageBoxButton.OK);
                 }

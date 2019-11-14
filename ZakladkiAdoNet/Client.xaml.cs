@@ -83,9 +83,7 @@ namespace ZakladkiAdoNet
 
         private void ListboxProduct_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"{Api.Url}/product/getProductClient/" + $"{((Product)listboxProduct.SelectedItems[0]).Id}");
-            request2.Method = "GET";
-            request2.ContentType = "application/json";
+            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"{Api.Url}/product/getProductClient/" +$"{((Product)listboxProduct.SelectedItems[0]).Id}");
             var response2 = request2.GetResponse();
             string res2 = "";
             Product products;
@@ -95,26 +93,34 @@ namespace ZakladkiAdoNet
                 res2 += reader.ReadToEnd();
                 products = JsonConvert.DeserializeObject<Product>(res2);
             }
-
-            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/product/getImage/" + $"{((Product)listboxProduct.SelectedItems[0]).Id}");
-            request.Method = "GET";
-            request.ContentType = "application/json";
-            var response = request.GetResponse();
-            string res = "";
-            string path = "";
             
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            {
-                string json = reader.ReadToEnd();
-                List<Product> list = JsonConvert.DeserializeObject<List<Product>>(json);
-                foreach (var item in list)
-                {
-                   res = $"{Api.Url}/content/ProductImages/" + item.Imagge;
-                
-                }
+                res2 = $"{Api.Url}/content/ProductImages/" + products.Imagge;
 
-                Imagebox.Source = new BitmapImage(new Uri(res));
-            }
+            
+
+            Imagebox.Source = new BitmapImage(new Uri(res2));
+
+            //            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/product/getImage/" + $"{((Product)listboxProduct.SelectedItems[0]).Id}");
+            //            request.Method = "GET";
+            //            request.ContentType = "application/json";
+            //            var response = request.GetResponse();
+            //            string res = "";
+            //#pragma warning disable CS0219 // The variable 'path' is assigned but its value is never used
+            //            string path = "";
+            //#pragma warning restore CS0219 // The variable 'path' is assigned but its value is never used
+
+            //            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            //            {
+            //                string json = reader.ReadToEnd();
+            //                List<Product> list = JsonConvert.DeserializeObject<List<Product>>(json);
+            //                foreach (var item in list)
+            //                {
+            //                   res = $"{Api.Url}/content/ProductImages/" + item.Imagge;
+
+            //                }
+
+            //                Imagebox.Source = new BitmapImage(new Uri(res));
+            //            }
 
             //using (Stream streamResponse = response.GetResponseStream())
             //{
@@ -146,11 +152,11 @@ namespace ZakladkiAdoNet
                 Map.Children.Add(maplayer);
 
 
-               
 
 
-          
-            
+
+
+
             }
 
 
