@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Maps.MapControl.WPF;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,7 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ZakladkiAdoNet.Config;
 
@@ -59,7 +60,7 @@ namespace ZakladkiAdoNet
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {        
-            HttpWebRequest request2 = HttpWebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" + $"{Logined.Id}");
+            HttpWebRequest request2 = WebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" + $"{Logined.Id}");
             request2.Method = "GET";
             request2.ContentType = "application/json";
             var response2 = request2.GetResponse();
@@ -71,7 +72,12 @@ namespace ZakladkiAdoNet
                 res2 += reader.ReadToEnd();
                 products = JsonConvert.DeserializeObject<List<Product>>(res2);
             }
-            listboxProduct.ItemsSource = products;
+            if (products != null)
+            {
+                listboxProduct.ItemsSource = products;
+            }
+            else
+                MessageBox.Show("PRODUCT NULL");
            
         }
 
@@ -90,39 +96,66 @@ namespace ZakladkiAdoNet
                 products = JsonConvert.DeserializeObject<Product>(res2);
             }
 
-            HttpWebRequest request = HttpWebRequest.CreateHttp($"{Api.Url}/product/getImage/" + $"{((Product)listboxProduct.SelectedItems[0]).Id}");
+            HttpWebRequest request = WebRequest.CreateHttp($"{Api.Url}/product/getImage/" + $"{((Product)listboxProduct.SelectedItems[0]).Id}");
             request.Method = "GET";
             request.ContentType = "application/json";
             var response = request.GetResponse();
             string res = "";
             string path = "";
-
             
-            using (Stream streamResponse = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                StreamReader reader = new StreamReader(streamResponse);
-                string responseFromServer = reader.ReadToEnd();
-                byte[] bytes = Convert.FromBase64String(JsonConvert.DeserializeObject<String>(responseFromServer));
-                System.Drawing.Image image;
-                using (MemoryStream ms = new MemoryStream(bytes))
+                string json = reader.ReadToEnd();
+                List<Product> list = JsonConvert.DeserializeObject<List<Product>>(json);
+                foreach (var item in list)
                 {
-                    image = System.Drawing.Image.FromStream(ms);
-                    //Imagebox.Source = (image);
-
+                   res = $"{Api.Url}/content/ProductImages/" + item.Imagge;
+                
                 }
+
+                Imagebox.Source = new BitmapImage(new Uri(res));
             }
 
+            //using (Stream streamResponse = response.GetResponseStream())
+            //{
+            //    StreamReader reader = new StreamReader(streamResponse);
+            //    string responseFromServer = reader.ReadToEnd();
+            //    byte[] bytes = Convert.FromBase64String(JsonConvert.DeserializeObject<String>(responseFromServer));
+            //    System.Drawing.Image image;
+            //    using (MemoryStream ms = new MemoryStream(bytes))
+            //    {
+            //        image = System.Drawing.Image.FromStream(ms);
+            //        //Imagebox.Source = (image);
 
-
-
+            //    }
+            //}
             if (res2!=null)
             {
              
                 txtName.Text = products.Name;
             txtQuantity.Text = products.Quantity.ToString();
             txtDescription.Text = products.Description;
+
+                MapLayer maplayer = new MapLayer();
+                Pushpin pin = new Pushpin();
+
+                pin.Location.Latitude = Convert.ToDouble(products.CoordX);
+                pin.Location.Longitude = Convert.ToDouble(products.CoordY);
+
+                maplayer.Children.Add(pin);
+                Map.Children.Add(maplayer);
+
+
+               
+
+
+          
             
             }
+
+
+
+
         }
 
         private void txtName_GotFocus(object sender, RoutedEventArgs e)

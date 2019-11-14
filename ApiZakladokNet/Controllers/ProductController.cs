@@ -10,6 +10,7 @@ using ApiZakladokNet.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 
@@ -20,11 +21,14 @@ namespace ApiZakladokNet.Controllers
     public class ProductController : ControllerBase
     {
         private readonly EFContext context;
-        private readonly IHostingEnvironment appEnvironment;
-        public ProductController(EFContext ccontext, IHostingEnvironment appenv)
+      
+            private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
+        public ProductController(EFContext ccontext, IHostingEnvironment env, IConfiguration configuration)
         {
             context = ccontext;
-            appEnvironment = appenv;
+            _env = env;
+            _configuration = configuration;
         }
 
 
@@ -53,16 +57,21 @@ namespace ApiZakladokNet.Controllers
         [HttpGet("getImage/{id}")]
         public ContentResult GetImage(int id)
         {
-            var path = string.Empty;
-            string filename = (context.Dbproduct.FirstOrDefault(t => t.Id == id)).Imagge;
-            using (var file = new FileStream(appEnvironment.WebRootPath + @"/Content/" + filename, FileMode.Open, FileAccess.Read))
-            {
-                var photo = new byte[file.Length];
-                file.Read(photo, 0, (int)file.Length);
-                path = Convert.ToBase64String(photo);
-            }
-            string json = JsonConvert.SerializeObject(path);
+
+            var product = context.Dbproduct.FirstOrDefault(t => t.User_Id == id).Imagge;
+
+            string json = JsonConvert.SerializeObject(product);
             return Content(json, "application/json");
+            //var path = string.Empty;
+            //string filename = (context.Dbproduct.FirstOrDefault(t => t.Id == id)).Imagge;
+            //using (var file = new FileStream(appEnvironment.WebRootPath + @"/Content/" + filename, FileMode.Open, FileAccess.Read))
+            //{
+            //    var photo = new byte[file.Length];
+            //    file.Read(photo, 0, (int)file.Length);
+            //    path = Convert.ToBase64String(photo);
+            //}
+            //string json = JsonConvert.SerializeObject(path);
+            //return Content(json, "application/json");
         }
 
 
@@ -71,15 +80,32 @@ namespace ApiZakladokNet.Controllers
         {
             try
             {
-                string path = string.Empty;
+                //string path = string.Empty;
+                //if (model.Imagge != null)
+                //{
+                //    byte[] imagebyte = Convert.FromBase64String(model.Imagge);
+                //    using (MemoryStream stream = new MemoryStream(imagebyte, 0, imagebyte.Length))
+                //    {
+                //        path = Guid.NewGuid().ToString() + ".jpg";
+                //        Image productImage = Image.FromStream(stream);
+                //        productImage.Save(appEnvironment.WebRootPath + @"/Content/" + path, ImageFormat.Jpeg);
+                //    }
+                //}
+
+                string nameOfImage = string.Empty;
                 if (model.Imagge != null)
                 {
-                    byte[] imagebyte = Convert.FromBase64String(model.Imagge);
-                    using (MemoryStream stream = new MemoryStream(imagebyte, 0, imagebyte.Length))
+                    // Шлях до нашої папки з проектом
+                    string directory = _env.ContentRootPath;
+                    string path = Path.Combine(directory, "Content", _configuration["ProductImages"]);
+                    nameOfImage = Path.GetRandomFileName() + ".jpg";
+                    string pathToFile = Path.Combine(path, nameOfImage);
+
+                    byte[] imageBytes = Convert.FromBase64String(model.Imagge);
+                    using (MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
                     {
-                        path = Guid.NewGuid().ToString() + ".jpg";
-                        Image productImage = Image.FromStream(stream);
-                        productImage.Save(appEnvironment.WebRootPath + @"/Content/" + path, ImageFormat.Jpeg);
+                        var image = Image.FromStream(ms);
+                        image.Save(pathToFile, ImageFormat.Jpeg);
                     }
                 }
 
@@ -89,7 +115,7 @@ namespace ApiZakladokNet.Controllers
                     Price = model.Price,                 
                      Quantity = model.Quantity,
                      Description = model.Description,
-                     Imagge=path,
+                     Imagge=nameOfImage,
                      CoordX=model.CoordX,
                      CoordY=model.CoordY,
                      User_Id=model.User_Id

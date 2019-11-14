@@ -158,6 +158,8 @@ namespace ZakladkiAdoNet
             txtcoordx.Text = "";
             txtcoordy.Text = "";
             Map.IsEnabled = true;
+            Map.Children.Clear();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -183,7 +185,7 @@ namespace ZakladkiAdoNet
 
 
             //MessageBox.Show(res);
-            HttpWebRequest request2 = WebRequest.CreateHttp($"{Api.Url}/product/getProductOne/" + $"{Logined.Id}");
+            HttpWebRequest request2 = WebRequest.CreateHttp($"{Api.Url}/product/getProduct");
             request2.Method = "GET";
             request2.ContentType = "application/json";
             var response2 = request2.GetResponse();
