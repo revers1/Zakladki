@@ -41,7 +41,7 @@
                 Content="Open list of users"/>
 
         <Button x:Name="ListOfProducts" Click="OpenListOfPOrders"
-                Grid.Column="1" Grid.Row="1" Margin="20 10 10 10"
+                Grid.Column="0" Grid.Row="2" Margin="20 10 10 10"
                 VerticalAlignment="Center"
                 Background="#FF222222" Foreground="White"
                 BorderBrush="Orange" BorderThickness="4"
